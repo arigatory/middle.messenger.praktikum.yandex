@@ -1,3 +1,5 @@
+@import '_variables.scss';
+
 @mixin button {
   background: $colorBlue;
   border: none;
@@ -11,7 +13,34 @@
   font-weight: 500;
   font-size: 11px;
   line-height: 11px;
-  color: #3369f3;
+  color:  $colorBlue;
   text-decoration: none;
   text-align: center;
+}
+
+@mixin label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 9px;
+  color: #999999;
+  margin-bottom: 4px;
+}
+
+@mixin input {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid $colorBlue;
+  margin-bottom: 18px;
+  padding-bottom: 6
+  px;
+}
+
+@mixin title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  color: #1e1e1e;
 }

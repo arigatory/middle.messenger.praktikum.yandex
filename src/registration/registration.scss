@@ -10,7 +10,7 @@
     outline: none;
   }
   &__title {
-    @include title
+    @include title;
   }
 
   &__label {
