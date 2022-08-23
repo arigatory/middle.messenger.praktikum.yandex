@@ -5,24 +5,24 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Document
-    link(rel="stylesheet" href="../../src/styles/main.css")
   body
     - var messages = [{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},]
     .content
       .navigation
         .navigation__top
-          a.profile-link(href="") Профиль
+          a.profile-link(href="../login/login.pug") Профиль
           input.navigation__search(type="text" placeholder="Поиск")
         ul.chat-list 
           each message in messages
             li.chat-item
-              .chat-list__img
+              .chat-item__img
               .chat-item__mid-col
                 h4.chat-item__name Андрей
                 p.chat-item__preview Изображение
               .chat-item__right-col
-                p.chat-list__time 10:49
-                p.chat-list__new-counter 2
+                p.chat-item__time 10:49
+                p.chat-item__new-counter 2
       .detail
-        .detail-content
-          p.detail-content__text Выберите чат чтобы отправить сообщение
+        .detail__content
+          p.detail__text Выберите чат чтобы отправить сообщение
+  script(src='main.js')
