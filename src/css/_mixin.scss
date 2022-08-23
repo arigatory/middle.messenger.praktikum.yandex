@@ -1,5 +1,12 @@
 @import '_variables.scss';
 
+@mixin center {
+  margin: 0 auto;
+  justify-content: center;
+  justify-items: center;
+  height: 100%px;
+}
+
 @mixin button {
   background: $colorBlue;
   border: none;
@@ -44,3 +51,4 @@
   text-align: center;
   color: #1e1e1e;
 }
+

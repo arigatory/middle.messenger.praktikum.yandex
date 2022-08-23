@@ -11,6 +11,8 @@ html(lang="en")
       .navigation
         .navigation__top
           a.profile-link(href="../login/login.pug") Профиль
+          a.profile-link(href="../errors/error500.pug") Ошибка 500
+          a.profile-link(href="../errors/error404.pug") Ошибка 404
           input.navigation__search(type="text" placeholder="Поиск")
         ul.chat-list 
           each message in messages
