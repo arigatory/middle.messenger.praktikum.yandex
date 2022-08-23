@@ -6,14 +6,17 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Document
   body
-    .login-card
-      h1 Вход
-      form(action="post")
-        label Логин
-          input(name="login")
-        label(for="password") Пароль
-          input(name="password")
-        button Авторизироваться
-        a(href="../main/main.pug") Нет аккаунта?
+    .modal
+      .modal__overlay
+      .modal__content
+        .login-card
+          h1.login-card__title Вход
+          form(action="post").login-form
+            label.login-card__label Логин
+            input(name="login" value="ivanivanov").login-card__input
+            label(for="password").login-card__label Пароль
+            input(name="password" type = "password").login-card__input
+            button.login-card__button Авторизироваться
+            a(href="../main/main.pug").login-card__link Нет аккаунта?
   script(src='login.js')
-  
+
