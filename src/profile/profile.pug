@@ -1,0 +1,42 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Document
+  body
+    .content
+      .navigation
+        a(href="../index/index.pug")
+          img(src="../img/arrow-back.svg").navigation__back
+      .profile
+        img(src="../img/empty.png")
+        p.profile__name Иван
+        .rows
+          .profile__row
+            .profile__key Почта
+            .profile__value pochta@yandex.ru
+          .profile__row
+            .profile__key Логин
+            .profile__value ivanivanov
+          .profile__row
+            .profile__key Имя
+            .profile__value Иван
+          .profile__row
+            .profile__key Фамилия
+            .profile__value Иванов
+          .profile__row
+            .profile__key Имя в чате
+            .profile__value Иван
+          .profile__row
+            .profile__key Телефон
+            .profile__value +7 (909) 967 30 30
+        .rows
+          .profile__row
+            a(href="#").profile__link Изменить данные
+          .profile__row
+            a(href="#").profile__link Изменить пароль
+          .profile__row
+            a(href="#").profile__link.profile__link_danger Выйти
+  script(src='profile.js')
