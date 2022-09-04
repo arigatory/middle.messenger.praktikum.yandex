@@ -7,5 +7,5 @@ app.use(express.static('./dist'));
 app.set('view engine', 'pug');
 
 app.listen(PORT, function () {
-  console.log(`Example app listening on port ${PORT}!`);
+  console.log(`Chat app listening on port ${PORT}!`);
 });
