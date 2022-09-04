@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/index/index.pug",
-    "start": "parcel build src/index/index.pug -d dist && node src/app.js",
-    "build": "parcel build src/index/index.pug -d docs --public-url ./"
+    "start": "npm run build && node src/app.js",
+    "build": "parcel build src/index/index.pug -d dist"
   },
   "repository": {
     "type": "git",
@@ -21,10 +21,10 @@
   "homepage": "https://github.com/arigatory/middle.messenger.praktikum.yandex#readme",
   "keywords": [],
   "devDependencies": {
-    "express": "^4.18.1",
-    "parcel-bundler": "^1.12.5",
-    "pug": "^3.0.2",
-    "sass": "^1.54.5"
+    "express": "4.18.1",
+    "parcel-bundler": "1.12.5",
+    "pug": "3.0.2",
+    "sass": "1.54.5"
   },
   "engines": {
     "node": ">=12"
