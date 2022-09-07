@@ -6,7 +6,6 @@ head
   meta(name="viewport" content="width=device-width, initial-scale=1.0")
   title Chat
 body
-  - var messages = [{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},{name: Андрей, time: '10:49', counter: 2},]
   .content
     .navigation
       .navigation__top
@@ -22,11 +21,11 @@ body
         li.chat-item
           .chat-item__img
           .chat-item__mid-col
-            h4.chat-item__name Андрей
+            h4.chat-item__name= message.name
             p.chat-item__preview Изображение
           .chat-item__right-col
-            time.chat-item__time 10:49
-            p.chat-item__new-counter 2
+            time.chat-item__time= message.time
+            p.chat-item__new-counter= message.counter
     .detail
       .detail__content
         p.detail__text Выберите чат чтобы отправить сообщение

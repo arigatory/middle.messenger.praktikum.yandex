@@ -1,5 +1,5 @@
 import { ChatPreview } from "./models/ChatPreview";
-import { NavigationView } from "./views/NavigationView";
+import { NavigationView } from "./views/NavigationView/NavigationView";
 
 const root = document.getElementById('root');
 

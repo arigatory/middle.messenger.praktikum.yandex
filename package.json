@@ -21,22 +21,29 @@
   "homepage": "https://github.com/arigatory/middle.messenger.praktikum.yandex#readme",
   "keywords": [],
   "dependencies": {
-    "@types/node": "^18.7.15",
-    "express": "4.18.1",
-    "parcel-transformer-pug-precompile": "1.0.6",
-    "view": "^1.1.1"
+    "express": "4.18.1"
   },
   "devDependencies": {
+    "parcel-transformer-pug-precompile": "1.0.6",
+    "@parcel/config-default": "^2.7.0",
     "@parcel/transformer-pug": "2.7.0",
+    "@parcel/transformer-typescript-tsc": "^2.7.0",
     "@typescript-eslint/eslint-plugin": "5.36.1",
     "@typescript-eslint/parser": "5.36.1",
     "eslint": "8.23.0",
     "eslint-config-airbnb": "19.0.4",
+    "parcel": "^2.7.0",
     "pug": "3.0.2",
     "sass": "1.54.5",
     "stylelint": "14.11.0",
     "stylelint-scss": "4.3.0",
-    "parcel-bundler": "1.12.3"
+    "@parcel/transformer-inline-string": "^2.7.0",
+    "@parcel/transformer-sass": "^2.7.0",
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10"
   },
   "engines": {
     "node": ">=12"
