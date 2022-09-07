@@ -2,41 +2,17 @@ import { MessageInput } from './models/MessageInput';
 import { MessageInputView } from './views/MessageInputView/MessageInputView';
 import { ChatHeaderView } from './views/ChatHeaderView/ChatHeaderView';
 import { ChatPreview } from './models/ChatPreview';
+import { ChatDetailView } from './views/ChatDetailView/ChatDetailView';
+import { Chat } from './models/Chat';
 
 const root = document.getElementById('root');
 
-let messageInput = MessageInput.buildMessageInput({ text: 'Hello, world!' });
-
-console.log(messageInput);
-
-let chat = ChatPreview.buildChatPreview({
+const message = Chat.buildChat({
   id: 1,
-  picture: 'string',
-  titles: 'string',
-  text: 'string',
-  fromYou: false,
+  otherUserId: 1,
+  messages: ["1", "2", "3", "4", "5", "6", "7", "8"],
 });
+
 if (root) {
-  // new MessageInputView(root, messageInput).render();
-  new ChatHeaderView(root,chat).render();
+  new ChatDetailView(root, message).render();
 }
-
-// import { ChatPreview } from "./models/ChatPreview";
-// import { NavigationView } from "./views/NavigationView/NavigationView";
-
-// const root = document.getElementById('root');
-
-// let chat = ChatPreview.buildChatPreview({
-//   id: 1,
-//   picture: 'string',
-//   titles: "string",
-//   text: "string",
-//   fromYou:false,
-
-// });
-
-// console.log("Rendering chat preview...");
-
-// if (root) {
-//   new NavigationView(root, chat).render();
-// }

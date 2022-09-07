@@ -1,0 +1,21 @@
+@import '../../css/common.scss';
+
+.chat-detail {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: stretch;
+  justify-items: stretch;
+  position: relative;
+}
+
+.chat-list {
+  flex-grow: 2;
+}
+
+.message-input-region {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  left: 0;
+}
