@@ -1,5 +1,4 @@
 import { Collection } from '../models/Collection';
-import { Model } from '../models/Model';
 
 export abstract class CollectionView<T, K> {
   constructor(public parent: Element, public collection: Collection<T, K>) {}

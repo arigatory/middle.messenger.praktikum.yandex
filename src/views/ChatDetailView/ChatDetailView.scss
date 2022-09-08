@@ -9,13 +9,25 @@
   position: relative;
 }
 
-.chat-list {
+.chat-header-region {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  right: 0;
+  left: 0;
+  background: white;
+}
+
+.messages-list-region {
+  padding: 10px;
+  padding-top: 100px;
   flex-grow: 2;
 }
 
 .message-input-region {
-  position: absolute;
-  bottom: 10px;
+  position: fixed;
+  bottom: 0px;
   right: 0;
   left: 0;
+  background: white;
 }
