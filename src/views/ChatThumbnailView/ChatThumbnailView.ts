@@ -5,28 +5,19 @@ import './ChatThumbnailView.scss';
 import { Chat, ChatProps } from '../../models/Chat';
 import { random } from 'faker';
 
-function pad(num: number, size): string {
-  let res = num.toString();
-  while (res.length < size) res = '0' + num;
-  return res;
-}
 
-function int(max: number): number {
-  return Math.floor(Math.random() * max);
-}
-
-function randomHour(): string {
-  return pad(int(24), 2);
-}
 
 export class ChatThumbnailView extends View<Chat, ChatProps> {
   template(): string {
+    console.log(this.model);
+    const time = (this.model.get('messages')[0]).get('time');
+    const timeString = time.getHours() + ':' + time.getMinutes();
     const chat = {
-      pic: `https://i.pravatar.cc/${Math.floor(Math.random() * 100) + 50}`,
-      name: `Коллега ${int(100)}`,
-      text: 'Сообщение',
-      time: `${randomHour()}:${randomHour()}`,
-      newMessageCount: int(3)
+      pic: this.model.get('with')?.get('picture'),
+      name: this.model.get('with')?.get('nameInChat'),
+      text: (this.model.get('messages')[0]).get('content') ?? '',
+      time: timeString,
+      newMessageCount: 1
     };
     return template(chat);
   }

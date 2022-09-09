@@ -5,10 +5,69 @@ import { Main } from './models/Main';
 import { ChatListView } from './views/ChatListView/ChatListView';
 import { Collection } from './models/Collection';
 import { ChatProps } from './models/Chat';
+import { User } from './models/User';
+import { Message } from './models/Message';
+
+
+function pad(num: number, size): string {
+  let res = num.toString();
+  while (res.length < size) res = '0' + num;
+  return res;
+}
+
+function int(max: number): number {
+  return Math.floor(Math.random() * max);
+}
+
+function randomHour(): string {
+  return pad(int(24), 2);
+}
+
+
+const userIvan = User.buildUser({
+  nameInChat: 'Иван',
+  picture: `https://xsgames.co/randomusers/avatar.php?g=male`,
+  id: 1
+})
+
+const userVadim = User.buildUser({
+  nameInChat: 'Алена',
+  picture: `https://xsgames.co/randomusers/avatar.php?g=female`,
+  id: 2
+})
 
 const chats = new Collection('', (json: ChatProps) => {
   return Chat.buildChat(json);
 });
+
+const messageFromIvan = Message.buildMessage({
+  senderId: 1,
+  content: 'Привет, меня зовут Иван. Давай встретимся на следующих выходных?',
+  time: new Date(),
+  isread: false
+});
+
+const messageFromVadim = Message.buildMessage({
+  senderId: 1,
+  content: 'Привет, меня зовут Алена.',
+  time: new Date(),
+  isread: false
+});
+
+
+const chatWithIvan = Chat.buildChat({
+  id:1,
+  with: userIvan,
+  messages: [messageFromIvan],
+}); 
+
+const chatWithVadim = Chat.buildChat({
+  id:2,
+  with: userVadim,
+  messages: [messageFromVadim],
+});
+
+const data: Chat[] = [chatWithIvan, chatWithVadim];
 
 
 chats.on('change', () => {
@@ -19,22 +78,4 @@ chats.on('change', () => {
   }
 });
 
-
-const chat1 = Chat.buildChat({
-    id:1,
-    fromId: 2,
-    messages: [],
-    picture: "not exist",
-    title: "Funny chat",
-}); 
-
-const chat2 = Chat.buildChat({
-  id:1,
-  fromId: 2,
-  messages: [],
-  picture: "not exist",
-  title: "Funny chat",
-}); 
-
-
-chats.load([chat1, chat2]);
+chats.load(data);

@@ -3,13 +3,12 @@ import { Attributes } from './Attributes';
 import { Eventing } from './Eventing';
 import { Collection } from './Collection';
 import { Message } from './Message';
+import { User } from './User';
 
 export interface ChatProps {
   id?: number;
-  fromId: number;
-  messages?: Message[];
-  picture: string;
-  title: string;
+  with?: User;
+  messages: Message[];
 }
 
 export class Chat extends Model<ChatProps> {

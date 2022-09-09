@@ -11,6 +11,7 @@ export interface UserProps {
   nameInChat?: string;
   phone?: string;
   id?: number;
+  picture?: string;
 }
 
 const rootUrl = 'http://localhost:3000/users';

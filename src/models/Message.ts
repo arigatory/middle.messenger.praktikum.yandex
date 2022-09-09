@@ -6,8 +6,9 @@ import { Collection } from './Collection';
 export interface MessageProps {
   id?: number;
   senderId: number;
-  text: string;
+  content: string;
   time: Date;
+  isread: boolean;
 }
 
 export class Message extends Model<MessageProps> {
