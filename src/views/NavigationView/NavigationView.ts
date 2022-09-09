@@ -1,12 +1,24 @@
-import { Chat, ChatProps } from '../../models/Chat';
-import { ChatPreview, ChatPreviewProps } from '../../models/ChatPreview';
-import { CollectionView } from '../CollectionView';
+import { Navigation, NavigationProps } from '../../models/Navigation';
+import { ChatListView } from '../ChatListView/ChatListView';
 import { View } from '../View';
 import template from './NavigationView.pug';
 import './NavigationView.scss';
 
-export class NavigationView extends CollectionView<Chat, ChatProps> {
-  renderItem(model: Chat, itemParent: Element): void {
-    throw new Error('Method not implemented.');
+export class NavigationView extends View<Navigation, NavigationProps> {
+  regionsMap(): { [key: string]: string } {
+    return {
+      chatListRegion: '.chat-list-region',
+    };
+  }
+
+  onRender(): void {
+    new ChatListView(
+      this.regions.chatListRegion,
+      this.model.get('chats')
+    ).render();
+  }
+
+  template(): string {
+    return template({});
   }
 }

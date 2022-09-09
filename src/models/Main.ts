@@ -1,13 +1,14 @@
 import { Model } from './Model';
 import { Attributes } from './Attributes';
 import { Eventing } from './Eventing';
-import { Chat } from './Chat';
+import { Chat, ChatProps } from './Chat';
+import { Collection } from './Collection';
 
 export interface MainProps {
   // id of current user
   id?: number;
-  chats: Chat[];
-  selectedChat: Chat;
+  chats: Collection<Chat, ChatProps>;
+  selectedChat?: Chat;
 }
 
 export class Main extends Model<MainProps> {

@@ -26,6 +26,11 @@
   text-align: right;
   color: #999999;
   margin-bottom: 20px;
+  text-decoration: none;
+
+  &:hover {
+    color: #636363;
+  }
 }
 
 ::placeholder {
@@ -117,4 +122,33 @@
     text-align: center;
     color: #999999;
   }
+}
+@import '../../css/common.scss';
+
+.navigation {
+  background-color: #fbfbfb;
+  overflow: visible;
+  &__top {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+
+  &__search {
+    background: #efefef;
+    border-radius: 5px;
+    border: none;
+    height: 32px;
+  }
+}
+
+.profile-link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  text-align: right;
+  color: #999999;
+  margin-bottom: 20px;
 }

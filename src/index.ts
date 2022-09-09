@@ -7,6 +7,8 @@ import { Collection } from './models/Collection';
 import { ChatProps } from './models/Chat';
 import { User } from './models/User';
 import { Message } from './models/Message';
+import { NavigationView } from './views/NavigationView/NavigationView';
+import { Navigation } from './models/Navigation';
 
 
 function pad(num: number, size): string {
@@ -74,7 +76,9 @@ chats.on('change', () => {
   const root = document.getElementById('root');
   if (root) {
     console.log('chats changed');
-    new ChatListView(root, chats).render();
+    // new NavigationView(root, 
+    //   Navigation.buildNavigation({chats: chats, searchQuery:''})).render();
+    new MainView(root, Main.buildMain({chats: chats})).render();
   }
 });
 

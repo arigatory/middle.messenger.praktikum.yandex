@@ -7,7 +7,8 @@ import { Model } from './Model';
 export interface NavigationProps {
   id?: number;
   searchQuery: string;
-  chatPreviews: Collection<Chat, ChatProps>;
+  chats: Collection<Chat, ChatProps>;
+  selectedChat?: Chat;
 }
 
 export class Navigation extends Model<NavigationProps> {
