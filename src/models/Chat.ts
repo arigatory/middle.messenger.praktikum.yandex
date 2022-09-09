@@ -2,11 +2,14 @@ import { Model } from './Model';
 import { Attributes } from './Attributes';
 import { Eventing } from './Eventing';
 import { Collection } from './Collection';
+import { Message } from './Message';
 
 export interface ChatProps {
   id?: number;
-  otherUserId: number;
-  messages?: string[];
+  fromId: number;
+  messages?: Message[];
+  picture: string;
+  title: string;
 }
 
 export class Chat extends Model<ChatProps> {
@@ -14,5 +17,9 @@ export class Chat extends Model<ChatProps> {
     return new Chat(new Attributes<ChatProps>(attrs), new Eventing());
   }
 
-  // TODO: add collection
+  static buildChatCollection(): Collection<Chat, ChatProps> {
+    return new Collection<Chat, ChatProps>("", (json: ChatProps) =>
+      Chat.buildChat(json)
+    );
+  }
 }

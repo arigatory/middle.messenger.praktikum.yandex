@@ -13,7 +13,6 @@ export abstract class CollectionView<T, K> {
     for (let model of this.collection.models) {
       const itemParent = document.createElement('div');
       this.renderItem(model, itemParent);
-
       templateElement.content.append(itemParent);
     }
 

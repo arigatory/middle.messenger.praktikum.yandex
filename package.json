@@ -4,10 +4,9 @@
   "description": "---",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel src/index/index.pug",
+    "dev": "parcel src/index.html",
     "start": "npm run build && node src/app.ts",
-    "build": "parcel build src/index/index.pug -d dist"
+    "build": "parcel build src/index.js --dist-dir dist"
   },
   "repository": {
     "type": "git",

@@ -1,18 +1,40 @@
-import { MessageInput } from './models/MessageInput';
-import { MessageInputView } from './views/MessageInputView/MessageInputView';
-import { ChatHeaderView } from './views/ChatHeaderView/ChatHeaderView';
-import { ChatPreview } from './models/ChatPreview';
-import { ChatDetailView } from './views/ChatDetailView/ChatDetailView';
 import { Chat } from './models/Chat';
+import { MainView } from './views/MainView/MainView';
+import { Main } from './models/Main';
 
-const root = document.getElementById('root');
+import { ChatListView } from './views/ChatListView/ChatListView';
+import { Collection } from './models/Collection';
+import { ChatProps } from './models/Chat';
 
-const message = Chat.buildChat({
-  id: 1,
-  otherUserId: 1,
-  messages: ["1", "2", "3", "4", "5", "6", "7", "8"],
+const chats = new Collection('', (json: ChatProps) => {
+  return Chat.buildChat(json);
 });
 
-if (root) {
-  new ChatDetailView(root, message).render();
-}
+
+chats.on('change', () => {
+  const root = document.getElementById('root');
+  if (root) {
+    console.log('chats changed');
+    new ChatListView(root, chats).render();
+  }
+});
+
+
+const chat1 = Chat.buildChat({
+    id:1,
+    fromId: 2,
+    messages: [],
+    picture: "not exist",
+    title: "Funny chat",
+}); 
+
+const chat2 = Chat.buildChat({
+  id:1,
+  fromId: 2,
+  messages: [],
+  picture: "not exist",
+  title: "Funny chat",
+}); 
+
+
+chats.load([chat1, chat2]);

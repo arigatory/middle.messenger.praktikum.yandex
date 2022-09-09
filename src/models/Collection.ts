@@ -13,4 +13,12 @@ export class Collection<T, K> {
   get trigger() {
     return this.events.trigger;
   }
+
+  load(items: T[]) : void {
+    items.forEach((value: T) => {
+      this.models.push(value);
+    });
+
+    this.trigger('change');
+  }
 }

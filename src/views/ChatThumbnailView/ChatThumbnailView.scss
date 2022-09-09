@@ -1,46 +1,4 @@
 @import '../../css/common.scss';
-
-.navigation {
-  background-color: #fbfbfb;
-  overflow: visible;
-  &__top {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 10px;
-  }
-
-  &__search {
-    background: #efefef;
-    border-radius: 5px;
-    border: none;
-    height: 32px;
-  }
-}
-
-.profile-link {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 12px;
-  text-align: right;
-  color: #999999;
-  margin-bottom: 20px;
-}
-
-::placeholder {
-  text-align: center;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 12px;
-  color: #999999;
-}
-
-.chat-list {
-  margin-left: 0;
-  padding-left: 0;
-}
-
 .chat-item {
   list-style: none;
   margin-left: 0;
@@ -96,25 +54,5 @@
     line-height: 20px;
     font-weight: 500;
     font-size: 12px;
-  }
-}
-
-.detail {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-items: center;
-  width: 100%;
-
-  &__content {
-    width: 100%;
-  }
-
-  &__text {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 12px;
-    text-align: center;
-    color: #999999;
   }
 }
