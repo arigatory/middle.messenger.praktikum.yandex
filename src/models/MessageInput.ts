@@ -5,7 +5,7 @@ import { Model } from './Model';
 export interface MessageInputProps {
   id?: number;
   text: string;
-  picUrl: string;
+  picUrl?: string;
 }
 
 export class MessageInput extends Model<MessageInputProps> {

@@ -24,6 +24,14 @@ export class MainView extends View<Main, MainProps> {
         searchQuery: '',
       })
     ).render();
+    const chat = this.model.get('selectedChat');
+    console.log(chat);
+    if (chat) {
+      new ChatDetailView(
+        this.regions.chatDetailRegion,
+        chat
+      ).render();
+    }
   }
 
   template(): string {

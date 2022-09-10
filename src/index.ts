@@ -78,7 +78,7 @@ chats.on('change', () => {
     console.log('chats changed');
     // new NavigationView(root, 
     //   Navigation.buildNavigation({chats: chats, searchQuery:''})).render();
-    new MainView(root, Main.buildMain({chats: chats})).render();
+    new MainView(root, Main.buildMain({chats: chats, selectedChat: chatWithIvan})).render();
   }
 });
 

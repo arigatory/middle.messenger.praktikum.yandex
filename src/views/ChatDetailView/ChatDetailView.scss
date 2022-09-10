@@ -1,4 +1,3 @@
-@import '../../css/common.scss';
 
 .chat-detail {
   display: flex;
@@ -9,12 +8,8 @@
   position: relative;
 }
 
-.navigation-region{
-width: 100px;
-}
-
 .chat-header-region {
-  position: fixed;
+  position: sticky;
   top: 0;
   z-index: 10;
   right: 0;
@@ -29,7 +24,7 @@ width: 100px;
 }
 
 .message-input-region {
-  position: fixed;
+  position: sticky;
   bottom: 0px;
   right: 0;
   left: 0;
