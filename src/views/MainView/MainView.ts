@@ -6,7 +6,6 @@ import './MainView.scss';
 import { ChatDetailView } from '../ChatDetailView/ChatDetailView';
 import { Main, MainProps } from '../../models/Main';
 import { Navigation } from '../../models/Navigation';
-import { Collection } from '../../models/Collection';
 
 export class MainView extends View<Main, MainProps> {
   regionsMap(): { [key: string]: string } {
@@ -16,21 +15,28 @@ export class MainView extends View<Main, MainProps> {
     };
   }
 
+  setSelectedChat = (selectedChat: Chat) => {
+    this.model.update('selectedChat', selectedChat);
+  };
+
+  // onSelectedChatChanged(chat: Chat): void {
+  //   this.model.setSe
+  // }
+
   onRender(): void {
     new NavigationView(
       this.regions.navigationRegion,
+
       Navigation.buildNavigation({
         chats: this.model.get('chats'),
         searchQuery: '',
-      })
+        selectedChat: this.model.get('selectedChat'),
+      }),
+      this.setSelectedChat
     ).render();
-    const chat = this.model.get('selectedChat');
-    console.log(chat);
-    if (chat) {
-      new ChatDetailView(
-        this.regions.chatDetailRegion,
-        chat
-      ).render();
+    const selectedChat = this.model.get('selectedChat');
+    if (selectedChat) {
+      new ChatDetailView(this.regions.chatDetailRegion, selectedChat).render();
     }
   }
 

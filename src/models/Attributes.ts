@@ -5,11 +5,15 @@ export class Attributes<T extends Object> {
     return this.data[key];
   };
 
-  set(update: T): void {
+  set = (update: T): void => {
     Object.assign(this.data, update);
   }
 
-  getAll(): T {
+  update = <K extends keyof T> (key: K, value: T[K]): void  => {
+    this.data[key] = value;
+  }
+
+  getAll = (): T => {
     return this.data;
   }
 }

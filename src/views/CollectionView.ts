@@ -1,7 +1,11 @@
 import { Collection } from '../models/Collection';
 
 export abstract class CollectionView<T, K> {
-  constructor(public parent: Element, public collection: Collection<T, K>) {}
+  constructor(
+    public parent: Element,
+    public collection: Collection<T, K>,
+    public selectedItem: T
+  ) {}
 
   abstract renderItem(model: T, itemParent: Element): void;
 
@@ -12,6 +16,7 @@ export abstract class CollectionView<T, K> {
 
     for (let model of this.collection.models) {
       const itemParent = document.createElement('div');
+
       this.renderItem(model, itemParent);
       templateElement.content.append(itemParent);
     }

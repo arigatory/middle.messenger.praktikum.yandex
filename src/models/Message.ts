@@ -16,5 +16,20 @@ export class Message extends Model<MessageProps> {
     return new Message(new Attributes<MessageProps>(attrs), new Eventing());
   }
 
-  // TODO: add collection
+  static buildMessageCollection(): Collection<Message, MessageProps> {
+    return new Collection<Message, MessageProps>('', (json: MessageProps) =>
+      Message.buildMessage(json)
+    );
+  }
+
+  static arraytToCollection(
+    messages: Message[]
+  ): Collection<Message, MessageProps> {
+    const collection = new Collection<Message, MessageProps>(
+      '',
+      (json: MessageProps) => Message.buildMessage(json)
+    );
+    collection.load(messages);
+    return collection;
+  }
 }

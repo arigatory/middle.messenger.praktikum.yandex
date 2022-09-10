@@ -8,7 +8,7 @@ export interface NavigationProps {
   id?: number;
   searchQuery: string;
   chats: Collection<Chat, ChatProps>;
-  selectedChat?: Chat;
+  selectedChat: Chat;
 }
 
 export class Navigation extends Model<NavigationProps> {

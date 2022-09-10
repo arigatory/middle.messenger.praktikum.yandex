@@ -8,7 +8,7 @@ export interface MainProps {
   // id of current user
   id?: number;
   chats: Collection<Chat, ChatProps>;
-  selectedChat?: Chat;
+  selectedChat: Chat;
 }
 
 export class Main extends Model<MainProps> {

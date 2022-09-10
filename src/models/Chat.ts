@@ -2,14 +2,13 @@ import { Model } from './Model';
 import { Attributes } from './Attributes';
 import { Eventing } from './Eventing';
 import { Collection } from './Collection';
-import { Message } from './Message';
+import { Message, MessageProps } from './Message';
 import { User } from './User';
 
 export interface ChatProps {
   id?: number;
   with?: User;
-  messages: Message[];
-  isSelected: boolean;
+  messages: Collection<Message, MessageProps>;
 }
 
 export class Chat extends Model<ChatProps> {
@@ -21,9 +20,5 @@ export class Chat extends Model<ChatProps> {
     return new Collection<Chat, ChatProps>("", (json: ChatProps) =>
       Chat.buildChat(json)
     );
-  }
-
-  select(): void {
-    this.set ({isSelected: !this.get('isSelected'), messages: this.get('messages')});
   }
 }

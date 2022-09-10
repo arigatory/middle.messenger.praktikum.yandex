@@ -7,6 +7,7 @@ import { MessageInputView } from '../MessageInputView/MessageInputView';
 import { NavigationView } from '../NavigationView/NavigationView';
 import './ChatDetailView.scss';
 import { MessageInput } from '../../models/MessageInput';
+import { MessagesListView } from '../MessagesListView/MessagesListView';
 
 export class ChatDetailView extends View<Chat, ChatProps> {
   regionsMap(): { [key: string]: string } {
@@ -20,7 +21,11 @@ export class ChatDetailView extends View<Chat, ChatProps> {
 
   onRender(): void {
     new ChatHeaderView(this.regions.chatHeaderRegion, this.model).render();
-    // new MessageView(this.regions.messagesListRegion, this.model).render();
+    new MessagesListView(
+      this.regions.messagesListRegion,
+      this.model.get('messages'),
+      this.model.get('messages').models[0]
+    ).render();
     new MessageInputView(
       this.regions.messageInputRegion,
       MessageInput.buildMessageInput({ text: '' })
