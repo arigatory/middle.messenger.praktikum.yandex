@@ -9,6 +9,7 @@ export interface ChatProps {
   id?: number;
   with?: User;
   messages: Message[];
+  isSelected: boolean;
 }
 
 export class Chat extends Model<ChatProps> {

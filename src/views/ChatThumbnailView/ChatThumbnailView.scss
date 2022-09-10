@@ -10,6 +10,14 @@
   padding: 10px;
   min-width: 310px;
 
+  &:hover {
+    background: #e4edfd;
+    cursor: pointer;
+  }
+
+  &_active {
+    background: #c6d9f9;
+  }
   &__img {
     width: 47px;
     height: 47px;

@@ -61,12 +61,14 @@ const chatWithIvan = Chat.buildChat({
   id:1,
   with: userIvan,
   messages: [messageFromIvan],
+  isSelected: true,
 }); 
 
 const chatWithVadim = Chat.buildChat({
   id:2,
   with: userVadim,
   messages: [messageFromVadim],
+  isSelected: false
 });
 
 const data: Chat[] = [chatWithIvan, chatWithVadim];
@@ -83,3 +85,4 @@ chats.on('change', () => {
 });
 
 chats.load(data);
+
