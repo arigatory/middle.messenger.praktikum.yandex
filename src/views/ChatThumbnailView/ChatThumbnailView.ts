@@ -6,6 +6,15 @@ import { Chat, ChatProps } from '../../models/Chat';
 import { random } from 'faker';
 
 export class ChatThumbnailView extends View<Chat, ChatProps> {
+  eventsMap(): { [key: string]: () => void } {
+    return { 'click:.chat-item': this.onSelect };
+  }
+
+  onSelect = (): void => {
+    console.log('Chat clicked!');
+    this.model.select();
+  }
+
   template(): string {
     console.log(this.model);
     const time = this.model.get('messages')[0].get('time');

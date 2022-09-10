@@ -64,6 +64,10 @@ const chatWithIvan = Chat.buildChat({
   isSelected: true,
 }); 
 
+chatWithIvan.on('click', () => {
+  console.log(chatWithIvan);
+});
+
 const chatWithVadim = Chat.buildChat({
   id:2,
   with: userVadim,

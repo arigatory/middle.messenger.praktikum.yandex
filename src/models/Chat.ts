@@ -22,4 +22,8 @@ export class Chat extends Model<ChatProps> {
       Chat.buildChat(json)
     );
   }
+
+  select(): void {
+    this.set ({isSelected: !this.get('isSelected'), messages: this.get('messages')});
+  }
 }
