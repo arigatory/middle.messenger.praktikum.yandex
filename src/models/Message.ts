@@ -17,17 +17,15 @@ export class Message extends Model<MessageProps> {
   }
 
   static buildMessageCollection(): Collection<Message, MessageProps> {
-    return new Collection<Message, MessageProps>('', (json: MessageProps) =>
-      Message.buildMessage(json)
-    );
+    return new Collection<Message, MessageProps>('', (x: MessageProps) => Message.buildMessage(x));
   }
 
   static arraytToCollection(
-    messages: Message[]
+    messages: Message[],
   ): Collection<Message, MessageProps> {
     const collection = new Collection<Message, MessageProps>(
       '',
-      (json: MessageProps) => Message.buildMessage(json)
+      (json: MessageProps) => Message.buildMessage(json),
     );
     collection.load(messages);
     return collection;

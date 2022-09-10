@@ -1,5 +1,4 @@
 import { Chat, ChatProps } from '../../models/Chat';
-import { Model } from '../../models/Model';
 import { View } from '../View';
 import template from './ChatHeaderView.pug';
 import './ChatHeaderView.scss';

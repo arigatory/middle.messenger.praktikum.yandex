@@ -18,8 +18,11 @@ export class Model<T extends HasId> {
   constructor(private attributes: ModelAttributes<T>, private events: Events) {}
 
   on = this.events.on;
+
   trigger = this.events.trigger;
+
   get = this.attributes.get;
+
   getAll = this.attributes.getAll;
 
   update<K extends keyof T>(key: K, value: T[K]): void {

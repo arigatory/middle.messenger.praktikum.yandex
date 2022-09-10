@@ -15,7 +15,7 @@ export class Navigation extends Model<NavigationProps> {
   static buildNavigation(attrs: NavigationProps): Navigation {
     return new Navigation(
       new Attributes<NavigationProps>(attrs),
-      new Eventing()
+      new Eventing(),
     );
   }
 }

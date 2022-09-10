@@ -22,8 +22,6 @@ export class User extends Model<UserProps> {
   }
 
   static buildUserCollection(): Collection<User, UserProps> {
-    return new Collection<User, UserProps>(rootUrl, (json: UserProps) =>
-      User.buildUser(json)
-    );
+    return new Collection<User, UserProps>(rootUrl, (json: UserProps) => User.buildUser(json));
   }
 }

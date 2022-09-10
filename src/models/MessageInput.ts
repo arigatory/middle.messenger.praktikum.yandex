@@ -12,7 +12,7 @@ export class MessageInput extends Model<MessageInputProps> {
   static buildMessageInput(attrs: MessageInputProps) {
     return new MessageInput(
       new Attributes<MessageInputProps>(attrs),
-      new Eventing()
+      new Eventing(),
     );
   }
 }

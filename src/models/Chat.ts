@@ -17,8 +17,6 @@ export class Chat extends Model<ChatProps> {
   }
 
   static buildChatCollection(): Collection<Chat, ChatProps> {
-    return new Collection<Chat, ChatProps>("", (json: ChatProps) =>
-      Chat.buildChat(json)
-    );
+    return new Collection<Chat, ChatProps>('', (json: ChatProps) => Chat.buildChat(json));
   }
 }

@@ -8,16 +8,17 @@ export class ChatListView extends CollectionView<Chat, ChatProps> {
     public parent: Element,
     public collection: Collection<Chat, ChatProps>,
     public selectedItem: Chat,
-    public setSelectedChat: (selectedChat: Chat) => void
+    public setSelectedChat: (selectedChat: Chat) => void,
   ) {
     super(parent, collection, selectedItem);
   }
+
   renderItem(model: Chat, itemParent: Element): void {
     new ChatThumbnailView(
       itemParent,
       model,
       this.selectedItem,
-      this.setSelectedChat
+      this.setSelectedChat,
     ).render();
   }
 }

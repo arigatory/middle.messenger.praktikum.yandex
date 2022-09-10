@@ -6,37 +6,37 @@ export class FakeDb {
   static getChats(): Chat[] {
     const userIvan = User.buildUser({
       nameInChat: 'Иван',
-      picture: `https://i.pravatar.cc/150?img=3`,
+      picture: 'https://i.pravatar.cc/150?img=3',
       id: 1,
     });
 
     const userAndrey = User.buildUser({
       nameInChat: 'Андрей',
-      picture: `https://i.pravatar.cc/150?img=8`,
+      picture: 'https://i.pravatar.cc/150?img=8',
       id: 2,
     });
 
     const userIgor = User.buildUser({
       nameInChat: 'Игорь',
-      picture: `https://i.pravatar.cc/150?img=11`,
+      picture: 'https://i.pravatar.cc/150?img=11',
       id: 3,
     });
 
     const userAlena = User.buildUser({
       nameInChat: 'Алена',
-      picture: `https://i.pravatar.cc/150?img=44`,
+      picture: 'https://i.pravatar.cc/150?img=44',
       id: 4,
     });
 
     const userLuda = User.buildUser({
       nameInChat: 'Люда',
-      picture: `https://i.pravatar.cc/150?img=48`,
+      picture: 'https://i.pravatar.cc/150?img=48',
       id: 5,
     });
 
     const userAnna = User.buildUser({
       nameInChat: 'Анна',
-      picture: `https://i.pravatar.cc/150?img=32`,
+      picture: 'https://i.pravatar.cc/150?img=32',
       id: 6,
     });
 

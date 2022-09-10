@@ -1,3 +1,6 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable class-methods-use-this */
 import { HasId, Model } from '../models/Model';
 
 export abstract class View<T extends Model<K>, K extends HasId> {
@@ -23,7 +26,7 @@ export abstract class View<T extends Model<K>, K extends HasId> {
 
   bindEvents(fragment: DocumentFragment): void {
     const eventsMap = this.eventsMap();
-    for (let eventKey in eventsMap) {
+    for (const eventKey in eventsMap) {
       const [eventName, selector] = eventKey.split(':');
 
       fragment.querySelectorAll(selector).forEach((element) => {
@@ -35,7 +38,7 @@ export abstract class View<T extends Model<K>, K extends HasId> {
   mapRegions(fragment: DocumentFragment): void {
     const regionsMap = this.regionsMap();
 
-    for (let key in regionsMap) {
+    for (const key in regionsMap) {
       const selector = regionsMap[key];
       const element = fragment.querySelector(selector);
       if (element) {

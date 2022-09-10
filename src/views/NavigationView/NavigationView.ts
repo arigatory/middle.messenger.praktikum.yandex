@@ -9,10 +9,12 @@ export class NavigationView extends View<Navigation, NavigationProps> {
   constructor(
     public parent: Element,
     public model: Navigation,
-    public setSelectedChat: (selectedChat: Chat) => void
+    public setSelectedChat: (selectedChat: Chat) => void,
   ) {
     super(parent, model);
   }
+
+  // eslint-disable-next-line class-methods-use-this
   regionsMap(): { [key: string]: string } {
     return {
       chatListRegion: '.chat-list-region',
@@ -24,10 +26,11 @@ export class NavigationView extends View<Navigation, NavigationProps> {
       this.regions.chatListRegion,
       this.model.get('chats'),
       this.model.get('selectedChat'),
-      this.setSelectedChat
+      this.setSelectedChat,
     ).render();
   }
 
+  // eslint-disable-next-line class-methods-use-this
   template(): string {
     return template({});
   }

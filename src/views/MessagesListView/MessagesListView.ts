@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import { CollectionView } from '../CollectionView';
 import { Message, MessageProps } from '../../models/Message';
 import { MessageView } from '../MessageView/MessageView';

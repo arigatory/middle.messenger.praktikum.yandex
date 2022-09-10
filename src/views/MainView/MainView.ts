@@ -1,5 +1,6 @@
+/* eslint-disable class-methods-use-this */
 import { View } from '../View';
-import { Chat, ChatProps } from '../../models/Chat';
+import { Chat } from '../../models/Chat';
 import template from './MainView.pug';
 import { NavigationView } from '../NavigationView/NavigationView';
 import './MainView.scss';
@@ -8,12 +9,10 @@ import { Main, MainProps } from '../../models/Main';
 import { Navigation } from '../../models/Navigation';
 
 export class MainView extends View<Main, MainProps> {
-  regionsMap(): { [key: string]: string } {
-    return {
-      navigationRegion: '.navigation-region',
-      chatDetailRegion: '.chat-detail-region',
-    };
-  }
+  regionsMap = (): { [key: string]: string } => ({
+    navigationRegion: '.navigation-region',
+    chatDetailRegion: '.chat-detail-region',
+  });
 
   setSelectedChat = (selectedChat: Chat) => {
     this.model.update('selectedChat', selectedChat);
@@ -32,7 +31,7 @@ export class MainView extends View<Main, MainProps> {
         searchQuery: '',
         selectedChat: this.model.get('selectedChat'),
       }),
-      this.setSelectedChat
+      this.setSelectedChat,
     ).render();
     const selectedChat = this.model.get('selectedChat');
     if (selectedChat) {

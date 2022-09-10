@@ -1,10 +1,11 @@
+/* eslint-disable no-restricted-syntax */
 import { Collection } from '../models/Collection';
 
 export abstract class CollectionView<T, K> {
   constructor(
     public parent: Element,
     public collection: Collection<T, K>,
-    public selectedItem: T
+    public selectedItem: T,
   ) {}
 
   abstract renderItem(model: T, itemParent: Element): void;
@@ -14,7 +15,7 @@ export abstract class CollectionView<T, K> {
 
     const templateElement = document.createElement('template');
 
-    for (let model of this.collection.models) {
+    for (const model of this.collection.models) {
       const itemParent = document.createElement('div');
 
       this.renderItem(model, itemParent);
