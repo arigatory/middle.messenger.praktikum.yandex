@@ -21,11 +21,15 @@ export class ChatDetailView extends View<Chat, ChatProps> {
     new MessagesListView(
       this.regions.messagesListRegion,
       this.model.get('messages'),
-      this.model.get('messages').models[0],
+      this.model.get('messages').models[0]
     ).render();
+    const messageInput = MessageInput.buildMessageInput({ text: '' });
+    messageInput.on('change', ()=> {
+      console.log('input');
+    });
     new MessageInputView(
       this.regions.messageInputRegion,
-      MessageInput.buildMessageInput({ text: '' }),
+      messageInput,
     ).render();
   }
 

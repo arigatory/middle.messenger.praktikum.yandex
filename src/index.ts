@@ -10,14 +10,8 @@ const selectedChat: Chat = data[0];
 
 const chats = new Collection('', (json: ChatProps) => Chat.buildChat(json));
 
-chats.on('change', () => {
-  const root = document.getElementById('root');
-  if (root) {
-    new MainView(
-      root,
-      Main.buildMain({ chats, selectedChat }),
-    ).render();
-  }
-});
-
 chats.load(data);
+const root = document.getElementById('root');
+if (root) {
+  new MainView(root, Main.buildMain({ chats, selectedChat })).render();
+}
