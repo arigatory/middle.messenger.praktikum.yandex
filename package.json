@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "parcel src/index.html",
     "start": "npm run build && node src/app.ts",
-    "build": "parcel build src/index.html --dist-dir dist"
+    "build": "npm i && parcel build src/index.html --dist-dir dist"
   },
   "repository": {
     "type": "git",
