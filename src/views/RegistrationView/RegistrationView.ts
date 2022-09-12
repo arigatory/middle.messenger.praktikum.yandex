@@ -20,7 +20,8 @@ export class RegistrationView extends View<Registration, RegistrationProps> {
       'input:.registration-card__lastname-input': this.onLastNameInput,
       'input:.registration-card__phone-input': this.onPhoneInput,
       'input:.registration-card__password-input': this.onPasswordInput,
-      'input:.registration-card__password-repeat-input': this.onPasswordRepeatInput,
+      'input:.registration-card__password-repeat-input':
+        this.onPasswordRepeatInput,
       'submit:form': this.onSubmit,
     };
   }
@@ -31,10 +32,7 @@ export class RegistrationView extends View<Registration, RegistrationProps> {
     );
     if (input) {
       this.model.silentUpdate('email', input?.value);
-      this.model.silentUpdate(
-        'emailErrors',
-        emailErrors(input?.value)
-      );
+      this.model.silentUpdate('emailErrors', emailErrors(input?.value));
       const errors = this.parent.querySelector('.email-errors');
       if (errors) {
         errors.textContent = this.model.get('emailErrors')[0];
@@ -130,16 +128,17 @@ export class RegistrationView extends View<Registration, RegistrationProps> {
     }
   };
 
-
   onSubmit = () => {
     console.log({
       registration: this.model.get('email') ?? '',
+      login: this.model.get('login') ?? '',
+      firstName: this.model.get('firstname') ?? '',
+      lastName: this.model.get('lastname') ?? '',
+      phone: this.model.get('phone') ?? '',
       password: this.model.get('password') ?? '',
     });
     return false;
   };
-
-
 
   template(): string {
     return template({});

@@ -21,7 +21,18 @@ export interface RegistrationProps {
 }
 
 export class Registration extends Model<RegistrationProps> {
-  static buildRegistration(attrs: RegistrationProps): Registration {
-    return new Registration(new Attributes<RegistrationProps>(attrs), new Eventing());
+  static buildRegistration(): Registration {
+    return new Registration(
+      new Attributes<RegistrationProps>({
+        emailErrors: [],
+        loginErrors: [],
+        firstnameErrors: [],
+        lastnameErrors: [],
+        phoneErrors: [],
+        passwordErrors: [],
+        passwordRepeatErrors: [],
+      }),
+      new Eventing()
+    );
   }
 }

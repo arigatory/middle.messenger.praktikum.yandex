@@ -27,7 +27,7 @@ if (root) {
   } else  if (path === '/login') {
     new LoginView(root, Login.buildLogin()).render();
   } else  if (path === '/registration') {
-    new RegistrationView(root, Registration.buildRegistration({})).render();
+    new RegistrationView(root, Registration.buildRegistration()).render();
   } else {
     new MainView(root, Main.buildMain({ chats, selectedChat })).render();
   }
