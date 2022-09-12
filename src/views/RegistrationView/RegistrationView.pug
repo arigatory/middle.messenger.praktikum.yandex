@@ -1,22 +1,29 @@
 .modal
   .modal__overlay
   .modal__content
-    .login-card
-      h1.login-card__title Регистрация
-      form(action="post").login-form
-        label.login-card__label Почта
-        input(name="login" value="pochta@yandex.ru").login-card__input
-        label.login-card__label Логин
-        input(name="login" value="ivanivanov").login-card__input
-        label.login-card__label Имя
-        input(name="login" value="Иван").login-card__input
-        label.login-card__label Фамилия
-        input(name="login" value="Иванов").login-card__input
-        label.login-card__label Телефон
-        input(name="phone" value="+7 (909) 967 30 30").login-card__input            
-        label(for="password").login-card__label Пароль
-        input(name="password" type = "password").login-card__input
-        label(for="password").login-card__label Пароль (ещё раз)
-        input(name="password" type = "password").login-card__input
-        button.login-card__button Авторизироваться
-        a(href="../login/login.pug").login-card__link Войти?
+    .registration-card
+      h1.registration-card__title Регистрация
+      form(action="post" onsubmit="return false;").registration-form
+        label.registration-card__label Почта
+        input(name="email").registration-card__input.registration-card__email-input
+        .errors.email-errors
+        label.registration-card__label Логин
+        input(name="login").registration-card__input.registration-card__login-input
+        .errors.login-errors
+        label.registration-card__label Имя
+        input(name="name").registration-card__input.registration-card__firstname-input
+        .errors.firstname-errors
+        label.registration-card__label Фамилия
+        input(name="registration").registration-card__input.registration-card__lastname-input
+        .errors.lastname-errors
+        label.registration-card__label Телефон
+        input(name="phone").registration-card__input.registration-card__phone-input            
+        .errors.phone-errors
+        label(for="password").registration-card__label Пароль
+        input(name="password" type = "password").registration-card__input.registration-card__password-input
+        .errors.password-errors
+        label(for="password-repeat").registration-card__label Пароль (ещё раз)
+        input(name="password-repeat" type = "password").registration-card__input.registration-card__password-repeat-input
+        .errors.password-repeat-errors
+        button.registration-card__button Авторизироваться
+        a(href="/login").registration-card__link Войти?

@@ -1,6 +1,9 @@
 .navigation
   .navigation__top
-    a(href="/profile").profile-link Профиль ❯
-    a(href="/login").profile-link Login
+    .navigation__links
+      a(href="/login").profile-link Войти
+      a(href="/registration").profile-link Регистрация
+      a(href="/profile").profile-link Профиль ❯
+
     input.navigation__search(type="text" placeholder="Поиск")
     .chat-list-region

@@ -1,7 +1,11 @@
 .navigation {
   overflow: visible;
   width: 100%;
-
+  
+  &__links {
+    display: flex;
+    justify-content: space-between;
+  }
   ::placeholder {
     text-align: center;
     font-weight: 500;
@@ -44,5 +48,6 @@
   text-decoration: none;
   &:hover {
     color: #636363;
+    font-weight: bold;
   }
 }
