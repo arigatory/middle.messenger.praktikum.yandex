@@ -2,6 +2,13 @@
   overflow: visible;
   width: 100%;
 
+  ::placeholder {
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: #999999;
+  }
   &__top {
     display: flex;
     flex-direction: column;
@@ -35,16 +42,7 @@
   color: #999999;
   margin-bottom: 14px;
   text-decoration: none;
-
   &:hover {
     color: #636363;
   }
-}
-
-::placeholder {
-  text-align: center;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 12px;
-  color: #999999;
 }

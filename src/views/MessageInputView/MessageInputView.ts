@@ -5,15 +5,25 @@ import './MessageInputView.scss';
 import picUrl from './img/file.svg';
 
 export class MessageInputView extends View<MessageInput, MessageInputProps> {
-  eventsMap(): { [key: string]: () => void } {
+  eventsMap(): { [key: string]: (e: any) => void } {
     return {
       'click:.send-message': this.onSendMessage,
+      'keypress:input': this.onKeyPressedMessage,
     };
   }
 
+  onKeyPressedMessage = (e: { key: string }): void => {
+    if (e.key === 'Enter') {
+      this.onSendMessage();
+    }
+  };
+
   onSendMessage = (): void => {
     const input = this.parent.querySelector('input');
-    console.log(input?.value);
+    if (input?.value) {
+      console.log(input?.value);
+      this.model.update('text', input?.value);
+    }
   };
 
   template(): string {

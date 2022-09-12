@@ -7,6 +7,11 @@ export class Collection<T, K> {
 
   constructor(public rootUrl: string, public deserialize: (json: K) => T) {}
 
+  add(item: T): void {
+    this.models.push(item);
+    this.trigger('change');
+  }
+
   get on() {
     return this.events.on;
   }

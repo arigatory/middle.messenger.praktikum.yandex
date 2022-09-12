@@ -1,0 +1,22 @@
+.modal
+  .modal__overlay
+  .modal__content
+    .login-card
+      h1.login-card__title Регистрация
+      form(action="post").login-form
+        label.login-card__label Почта
+        input(name="login" value="pochta@yandex.ru").login-card__input
+        label.login-card__label Логин
+        input(name="login" value="ivanivanov").login-card__input
+        label.login-card__label Имя
+        input(name="login" value="Иван").login-card__input
+        label.login-card__label Фамилия
+        input(name="login" value="Иванов").login-card__input
+        label.login-card__label Телефон
+        input(name="phone" value="+7 (909) 967 30 30").login-card__input            
+        label(for="password").login-card__label Пароль
+        input(name="password" type = "password").login-card__input
+        label(for="password").login-card__label Пароль (ещё раз)
+        input(name="password" type = "password").login-card__input
+        button.login-card__button Авторизироваться
+        a(href="../login/login.pug").login-card__link Войти?

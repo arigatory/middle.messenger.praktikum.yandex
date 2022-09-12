@@ -6,6 +6,7 @@ import { MessageInputView } from '../MessageInputView/MessageInputView';
 import './ChatDetailView.scss';
 import { MessageInput } from '../../models/MessageInput';
 import { MessagesListView } from '../MessagesListView/MessagesListView';
+import { Message } from '../../models/Message';
 
 export class ChatDetailView extends View<Chat, ChatProps> {
   // eslint-disable-next-line class-methods-use-this
@@ -23,13 +24,21 @@ export class ChatDetailView extends View<Chat, ChatProps> {
       this.model.get('messages'),
       this.model.get('messages').models[0]
     ).render();
+
     const messageInput = MessageInput.buildMessageInput({ text: '' });
-    messageInput.on('change', ()=> {
-      console.log('input');
+    messageInput.on('change', () => {
+      this.model.get('messages').add(
+        Message.buildMessage({
+          time: new Date(),
+          content: messageInput.get('text'),
+          senderId: 1,
+          isread: true,
+        })
+      );
     });
     new MessageInputView(
       this.regions.messageInputRegion,
-      messageInput,
+      messageInput
     ).render();
   }
 

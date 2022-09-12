@@ -16,7 +16,7 @@ export abstract class View<T extends Model<K>, K extends HasId> {
     return {};
   }
 
-  eventsMap(): { [key: string]: () => void } {
+  eventsMap(): { [key: string]: (e: any) => void } {
     return {};
   }
 
