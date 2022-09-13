@@ -32,7 +32,7 @@ export class Registration extends Model<RegistrationProps> {
         passwordErrors: [],
         passwordRepeatErrors: [],
       }),
-      new Eventing()
+      new Eventing(),
     );
   }
 }

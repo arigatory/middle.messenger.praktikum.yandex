@@ -11,7 +11,6 @@ import { LoginView } from './views/LoginView/LoginView';
 import { RegistrationView } from './views/RegistrationView/RegistrationView';
 import { Registration } from './models/Registration';
 
-
 const data = FakeDb.getChats();
 const selectedChat: Chat = data[0];
 
@@ -23,10 +22,13 @@ const path = document.location.pathname;
 
 if (root) {
   if (path === '/profile') {
-    new ProfileView(root, Profile.buildProfile({picture: 'https://i.pravatar.cc/150?img=12'})).render();
-  } else  if (path === '/login') {
+    new ProfileView(
+      root,
+      Profile.buildProfile({ picture: 'https://i.pravatar.cc/150?img=12' }),
+    ).render();
+  } else if (path === '/login') {
     new LoginView(root, Login.buildLogin()).render();
-  } else  if (path === '/registration') {
+  } else if (path === '/registration') {
     new RegistrationView(root, Registration.buildRegistration()).render();
   } else {
     new MainView(root, Main.buildMain({ chats, selectedChat })).render();

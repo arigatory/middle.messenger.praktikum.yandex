@@ -9,20 +9,21 @@ import { MessagesListView } from '../MessagesListView/MessagesListView';
 import { Message } from '../../models/Message';
 
 export class ChatDetailView extends View<Chat, ChatProps> {
-  // eslint-disable-next-line class-methods-use-this
-  regionsMap = (): { [key: string]: string } => ({
-    navigationRegion: '.navigation-region',
-    chatHeaderRegion: '.chat-header-region',
-    messagesListRegion: '.messages-list-region',
-    messageInputRegion: '.message-input-region',
-  });
+  regionsMap(): { [key: string]: string } {
+    return {
+      navigationRegion: '.navigation-region',
+      chatHeaderRegion: '.chat-header-region',
+      messagesListRegion: '.messages-list-region',
+      messageInputRegion: '.message-input-region',
+    };
+  }
 
   onRender(): void {
     new ChatHeaderView(this.regions.chatHeaderRegion, this.model).render();
     new MessagesListView(
       this.regions.messagesListRegion,
       this.model.get('messages'),
-      this.model.get('messages').models[0]
+      this.model.get('messages').models[0],
     ).render();
 
     const messageInput = MessageInput.buildMessageInput({ text: '' });
@@ -33,15 +34,16 @@ export class ChatDetailView extends View<Chat, ChatProps> {
           content: messageInput.get('text'),
           senderId: 1,
           isread: true,
-        })
+        }),
       );
     });
     new MessageInputView(
       this.regions.messageInputRegion,
-      messageInput
+      messageInput,
     ).render();
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  template = (): string => template({});
+  template(): string {
+    return template({});
+  }
 }

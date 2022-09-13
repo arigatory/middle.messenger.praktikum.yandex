@@ -5,13 +5,13 @@ export abstract class CollectionView<T, K> {
   constructor(
     public parent: Element,
     public collection: Collection<T, K>,
-    public selectedItem: T
+    public selectedItem: T,
   ) {
     this.bindModel();
   }
 
   abstract renderItem(model: T, itemParent: Element): void;
-  
+
   bindModel(): void {
     this.collection.on('change', () => this.render());
   }

@@ -31,7 +31,8 @@ export class LoginView extends View<Login, LoginProps> {
       this.model.silentUpdate('loginErrors', loginErrors(input?.value));
       const errors = this.parent.querySelector('.login-errors');
       if (errors) {
-        errors.textContent = this.model.get('loginErrors')[0];
+        const [errorText] = this.model.get('loginErrors');
+        errors.textContent = errorText;
       }
     }
   };
@@ -45,7 +46,8 @@ export class LoginView extends View<Login, LoginProps> {
       this.model.silentUpdate('passwordErrors', passwordErrors(input?.value));
       const errors = this.parent.querySelector('.password-errors');
       if (errors) {
-        errors.textContent = this.model.get('passwordErrors')[0];
+        const [errorText] = this.model.get('passwordErrors');
+        errors.textContent = errorText;
       }
     }
   };

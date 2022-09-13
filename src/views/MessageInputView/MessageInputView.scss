@@ -9,9 +9,7 @@
   img {
     margin-right: 10px;
   }
-  ::placeholder {
-    text-align: left;
-  }
+
   input {
     flex-grow: 1;
     margin-right: 10px;
@@ -21,12 +19,15 @@
     padding: 10px 20px;
     border: none;
 
+    ::placeholder {
+      text-align: left;
+    }
+
     &:focus {
       outline-width: 1px;
       outline-style: solid;
       outline-color: #999999;
     }
-    
   }
 
   button {
@@ -40,7 +41,7 @@
     vertical-align: middle;
     font-size: 14px;
     line-height: 14px;
-  
+
     &:hover {
       cursor: pointer;
       font-weight: 700;

@@ -6,6 +6,6 @@ import { Profile, ProfileProps } from '../../models/Profile';
 
 export class ProfileView extends View<Profile, ProfileProps> {
   template(): string {
-    return template({picture: this.model.get('picture')});
+    return template({ picture: this.model.get('picture') });
   }
 }
