@@ -1,3 +1,33 @@
+const hasWhiteSpace = (s: string): boolean => /\s/.test(s);
+
+const hasCapitalLetter = (s: string): boolean => /[A-ZА-ЯЁ]/.test(s);
+
+const hasDigit = (s: string): boolean => /[0-9]/.test(s);
+
+const onlyDigits = (s: string): boolean => /^\d+$/g.test(s);
+
+const allowedLength = (s: string, min: number, max: number): boolean =>
+  s.length >= min && s.length <= max;
+
+const allowedChars = (s: string): boolean => /^[a-zA-Z0-9_-\s]*$/g.test(s);
+
+const allowedNameChars = (s: string): boolean =>
+  /^[a-zA-Zа-яА-Я-\s]*$/g.test(s);
+
+const allowedEmailChars = (s: string): boolean => /^[a-zA-Z0-9-.@]*$/g.test(s);
+
+const hasOneAt = (s: string): boolean => /^[^@]*@[^@]*$/.test(s);
+
+const hasLettersBeforAndAfterAt = (s: string): boolean =>
+  /^[^@]+@[^@]+$/.test(s);
+
+const hasPointAfterAt = (s: string): boolean => /^[^@]*@[^@]+[.]/.test(s);
+
+const hasPointInTheEnd = (s: string): boolean => /\.$/.test(s);
+
+const hasValidPhone = (s: string): boolean =>
+  /^(\s*)(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(s);
+
 export const loginErrors = (login: string): string[] => {
   const result: string[] = [];
   if (hasWhiteSpace(login)) {
@@ -11,7 +41,7 @@ export const loginErrors = (login: string): string[] => {
   }
   if (!allowedChars(login)) {
     result.push(
-      'Логин должен быть без спецсимволов (допустимы дефис и нижнее подчёркивание)'
+      'Логин должен быть без спецсимволов (допустимы дефис и нижнее подчёркивание)',
     );
   }
   return result;
@@ -49,7 +79,7 @@ export const phoneErrors = (phone: string): string[] => {
     result.push('Телефон должен быть от 10 до 15 символов');
   }
 
-  if(!hasValidPhone(phone)) {
+  if (!hasValidPhone(phone)) {
     result.push('Телефон должен правильным');
   }
 
@@ -79,56 +109,4 @@ export const emailErrors = (email: string): string[] => {
     result.push('Точка не должна быть последним символом');
   }
   return result;
-};
-
-const hasWhiteSpace = (s: string): boolean => {
-  return /\s/g.test(s);
-};
-
-const hasCapitalLetter = (s: string): boolean => {
-  return /.*[A-ZА-Я].*/g.test(s);
-};
-
-const hasDigit = (s: string): boolean => {
-  return /.*[0-9].*/g.test(s);
-};
-
-const onlyDigits = (s: string): boolean => {
-  return /^\d+$/g.test(s);
-};
-
-const allowedLength = (s: string, min: number, max: number): boolean => {
-  return s.length >= min && s.length <= max;
-};
-
-const allowedChars = (s: string): boolean => {
-  return /^[a-zA-Z0-9_-\s]*$/g.test(s);
-};
-
-const allowedNameChars = (s: string): boolean => {
-  return /^[a-zA-Zа-яА-Я-\s]*$/g.test(s);
-};
-
-const allowedEmailChars = (s: string): boolean => {
-  return /^[a-zA-Z0-9-\.@]*$/g.test(s);
-};
-
-const hasOneAt = (s: string): boolean => {
-  return /^[^@]*@[^@]*$/.test(s);
-};
-
-const hasLettersBeforAndAfterAt = (s: string): boolean => {
-  return /^[^@]+@[^@]+$/.test(s);
-};
-
-const hasPointAfterAt = (s: string): boolean => {
-  return /^[^@]*@[^@]+[\.]/.test(s);
-};
-
-const hasPointInTheEnd = (s: string): boolean => {
-  return /^.*[\.]$/.test(s);
-};
-
-const hasValidPhone = (s: string): boolean => {
-  return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(s);
 };

@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "parcel src/index.html",
     "start": "npm run build && node src/app.ts",
-    "build": "parcel build src/index.html --dist-dir dist"
+    "build:es": "node_modules/.bin/eslint.cmd **/*.ts",
+    "build:style": "node_modules/.bin/stylelint.cmd **/*.*css",
+    "build:ts": "node_modules/.bin/tsc",
+    "build:parcel": "parcel build src/index.html --dist-dir dist",
+    "build": "concurrently npm:build:* "
   },
   "repository": {
     "type": "git",
@@ -42,7 +46,8 @@
     "sass": "1.54.5",
     "stylelint": "14.11.0",
     "stylelint-scss": "4.3.0",
-    "typescript": "^4.8.3"
+    "typescript": "4.8.3",
+    "concurrently": "7.4.0"
   },
   "engines": {
     "node": ">=12"

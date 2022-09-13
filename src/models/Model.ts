@@ -34,11 +34,8 @@ export class Model<T extends HasId> {
     this.attributes.update(key, value);
   }
 
-
   set(update: T): void {
     this.attributes.set(update);
     this.events.trigger('change');
   }
-
-
 }

@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import { View } from '../View';
 import { Chat } from '../../models/Chat';
 import template from './MainView.pug';
@@ -17,10 +16,6 @@ export class MainView extends View<Main, MainProps> {
   setSelectedChat = (selectedChat: Chat) => {
     this.model.update('selectedChat', selectedChat);
   };
-
-  // onSelectedChatChanged(chat: Chat): void {
-  //   this.model.setSe
-  // }
 
   onRender(): void {
     new NavigationView(

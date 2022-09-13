@@ -35,7 +35,8 @@ export class RegistrationView extends View<Registration, RegistrationProps> {
       this.model.silentUpdate('emailErrors', emailErrors(input?.value));
       const errors = this.parent.querySelector('.email-errors');
       if (errors) {
-        errors.textContent = this.model.get('emailErrors')[0];
+        const [errorText] = this.model.get('emailErrors');
+        errors.textContent = errorText;
       }
     }
   };
@@ -49,7 +50,8 @@ export class RegistrationView extends View<Registration, RegistrationProps> {
       this.model.silentUpdate('loginErrors', loginErrors(input?.value));
       const errors = this.parent.querySelector('.login-errors');
       if (errors) {
-        errors.textContent = this.model.get('loginErrors')[0];
+        const [errorText] = this.model.get('loginErrors');
+        errors.textContent = errorText;
       }
     }
   };
@@ -63,7 +65,8 @@ export class RegistrationView extends View<Registration, RegistrationProps> {
       this.model.silentUpdate('firstnameErrors', nameErrors(input?.value));
       const errors = this.parent.querySelector('.firstname-errors');
       if (errors) {
-        errors.textContent = this.model.get('firstnameErrors')[0];
+        const [errorText] = this.model.get('firstnameErrors');
+        errors.textContent = errorText;
       }
     }
   };
@@ -77,7 +80,8 @@ export class RegistrationView extends View<Registration, RegistrationProps> {
       this.model.silentUpdate('lastnameErrors', nameErrors(input?.value));
       const errors = this.parent.querySelector('.lastname-errors');
       if (errors) {
-        errors.textContent = this.model.get('lastnameErrors')[0];
+        const [errorText] = this.model.get('lastnameErrors');
+        errors.textContent = errorText;
       }
     }
   };
@@ -91,7 +95,8 @@ export class RegistrationView extends View<Registration, RegistrationProps> {
       this.model.silentUpdate('phoneErrors', phoneErrors(input?.value));
       const errors = this.parent.querySelector('.phone-errors');
       if (errors) {
-        errors.textContent = this.model.get('phoneErrors')[0];
+        const [errorText] = this.model.get('phoneErrors');
+        errors.textContent = errorText;
       }
     }
   };
@@ -105,7 +110,8 @@ export class RegistrationView extends View<Registration, RegistrationProps> {
       this.model.silentUpdate('passwordErrors', passwordErrors(input?.value));
       const errors = this.parent.querySelector('.password-errors');
       if (errors) {
-        errors.textContent = this.model.get('passwordErrors')[0];
+        const [errorText] = this.model.get('passwordErrors');
+        errors.textContent = errorText;
       }
     }
   };
@@ -123,7 +129,8 @@ export class RegistrationView extends View<Registration, RegistrationProps> {
       this.model.silentUpdate('passwordRepeatErrors', newErrors);
       const errors = this.parent.querySelector('.password-repeat-errors');
       if (errors) {
-        errors.textContent = this.model.get('passwordRepeatErrors')[0];
+        const [errorText] = this.model.get('passwordRepeatErrors');
+        errors.textContent = errorText;
       }
     }
   };

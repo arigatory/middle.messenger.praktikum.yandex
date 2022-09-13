@@ -25,7 +25,10 @@
         "tsx": "never"
       }
     ],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "implicit-arrow-linebreak": "off",
+    "class-methods-use-this": "off",
+    "no-console": "off"
   },
   "env": {
     "browser": true,
