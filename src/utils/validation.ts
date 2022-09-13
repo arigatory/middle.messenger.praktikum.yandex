@@ -4,15 +4,15 @@ const hasCapitalLetter = (s: string): boolean => /[A-ZА-ЯЁ]/.test(s);
 
 const hasDigit = (s: string): boolean => /[0-9]/.test(s);
 
-const onlyDigits = (s: string): boolean => /^\d+$/g.test(s);
+const onlyDigits = (s: string): boolean => /^\d+$/.test(s);
 
 const allowedLength = (s: string, min: number, max: number): boolean =>
   s.length >= min && s.length <= max;
 
-const allowedChars = (s: string): boolean => /^[a-zA-Z0-9_-\s]*$/g.test(s);
+const allowedChars = (s: string): boolean => /^[a-zA-Z0-9_-\s]*$/.test(s);
 
 const allowedNameChars = (s: string): boolean =>
-  /^[a-zA-Zа-яА-Я-\s]*$/g.test(s);
+  /^[a-zA-Zа-яА-Я-\s]*$/.test(s);
 
 const allowedEmailChars = (s: string): boolean => /^[a-zA-Z0-9-.@]*$/g.test(s);
 
@@ -21,9 +21,11 @@ const hasOneAt = (s: string): boolean => /^[^@]*@[^@]*$/.test(s);
 const hasLettersBeforAndAfterAt = (s: string): boolean =>
   /^[^@]+@[^@]+$/.test(s);
 
-const hasPointAfterAt = (s: string): boolean => /^[^@]*@[^@]+[.]/.test(s);
+const hasPointAfterAt = (s: string): boolean => /^[^@]*@[^@^.]+[.]/.test(s);
 
 const hasPointInTheEnd = (s: string): boolean => /\.$/.test(s);
+
+const hasTwoPointsInARow = (s: string): boolean => /\.\./.test(s);
 
 const hasValidPhone = (s: string): boolean =>
   /^(\s*)(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(s);
@@ -107,6 +109,10 @@ export const emailErrors = (email: string): string[] => {
 
   if (hasPointInTheEnd(email)) {
     result.push('Точка не должна быть последним символом');
+  }
+
+  if (hasTwoPointsInARow(email)) {
+    result.push('Точки не должны идти продряд');
   }
   return result;
 };
