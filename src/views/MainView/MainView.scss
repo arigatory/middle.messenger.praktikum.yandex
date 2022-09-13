@@ -1,0 +1,19 @@
+@import '../../css/common.scss';
+
+.main-region {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-items: flex-start;
+  position: relative;
+}
+
+.navigation-region {
+  background-color: #fbfbfb;
+  width: 30%;
+}
+
+.chat-detail-region {
+  position: relative;
+  width: 70%;
+}
