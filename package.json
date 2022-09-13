@@ -6,10 +6,11 @@
     "dev": "parcel src/index.html",
     "start": "npm run build && node src/app.ts",
     "build:es": "node_modules/.bin/eslint.cmd **/*.ts",
-    "build:style": "node_modules/.bin/stylelint.cmd **/*.*css",
-    "build:ts": "node_modules/.bin/tsc",
-    "build:parcel": "parcel build src/index.html --dist-dir dist",
-    "build": "concurrently npm:build:* "
+    "validate:style": "node_modules/.bin/stylelint.cmd **/*.*css",
+    "validate:ts": "node_modules/.bin/tsc",
+    "validate:parcel": "parcel build src/index.html --dist-dir dist",
+    "validate": "concurrently npm:validate:* ",
+    "build": "parcel build src/index.html --dist-dir dist"
   },
   "repository": {
     "type": "git",
