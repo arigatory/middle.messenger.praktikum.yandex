@@ -1,0 +1,11 @@
+@import '../../css/common.scss';
+@import '../../css/mixin.scss';
+
+.link {
+  @include link;
+
+  &:hover {
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

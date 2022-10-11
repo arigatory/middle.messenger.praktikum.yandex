@@ -1,0 +1,31 @@
+@import '../../css/common.scss';
+@import '../../css/mixin.scss';
+
+.input-row {
+  display: flex;
+  flex-direction: column;
+  &:focus {
+    outline: none;
+  }
+
+  .label {
+    @include label;
+  }
+
+  .input {
+    @include input;
+
+    &::placeholder {
+      text-align: center;
+      color: #aaaaaa;
+    }
+  }
+
+  .errors {
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 8px;
+    color: #ff2f2f;
+    margin-bottom: 18px;
+  }
+}
