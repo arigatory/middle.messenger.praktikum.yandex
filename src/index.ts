@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const loginPage = new LoginPage({});
   const registrationPage = new RegistrationPage({});
 
-  root.append(loginPage.getContent()!);
+  root.append(registrationPage.getContent()!);
 
   loginPage.dispatchComponentDidMount();
 });

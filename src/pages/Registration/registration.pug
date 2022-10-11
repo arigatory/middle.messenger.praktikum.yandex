@@ -4,26 +4,13 @@
     .registration-card
       h1.registration-card__title Регистрация
       form(action="post" onsubmit="return false;").registration-form
-        label.registration-card__label Почта
-        input(name="email").registration-card__input.registration-card__email-input
-        .errors.email-errors
-        label.registration-card__label Логин
-        input(name="login").registration-card__input.registration-card__login-input
-        .errors.login-errors
-        label.registration-card__label Имя
-        input(name="name").registration-card__input.registration-card__firstname-input
-        .errors.firstname-errors
-        label.registration-card__label Фамилия
-        input(name="registration").registration-card__input.registration-card__lastname-input
-        .errors.lastname-errors
-        label.registration-card__label Телефон
-        input(name="phone").registration-card__input.registration-card__phone-input            
-        .errors.phone-errors
-        label(for="password").registration-card__label Пароль
-        input(name="password" type = "password").registration-card__input.registration-card__password-input
-        .errors.password-errors
-        label(for="password-repeat").registration-card__label Пароль (ещё раз)
-        input(name="password-repeat" type = "password").registration-card__input.registration-card__password-repeat-input
-        .errors.password-repeat-errors
-        button.registration-card__button Авторизироваться
-        a(href="/login").registration-card__link Войти?
+        |!{mail}
+        |!{login}
+        |!{firstName}
+        |!{lastName}
+        |!{phone}
+        |!{password}
+        |!{passwordRepeat}
+        .gap
+        |!{button}
+        |!{link}
