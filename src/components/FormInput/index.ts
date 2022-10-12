@@ -1,4 +1,5 @@
 import Block from '../../utils/Block';
+import { Input } from '../Input';
 import template from './formInput.pug';
 import './formInput.scss';
 
@@ -14,12 +15,20 @@ export class FormInput extends Block<FormInputProps> {
     super(props);
   }
 
+  init() {
+    this.children.input = new Input({
+      name: this.props.name,
+      type: this.props.type,
+      label: this.props.label,
+    });
+  }
+
   public getName() {
-    return (this.element as HTMLInputElement).name;
+    return (this.children.input as Input).getName();
   }
 
   public getValue() {
-    return (this.element as HTMLInputElement).value;
+    return (this.children.input as Input).getValue();
   }
 
   render() {

@@ -4,7 +4,7 @@ import { Main } from './models/Main';
 import { Collection } from './models/Collection';
 
 import { FakeDb } from './utils/fake-db';
-import { ProfileView } from './views/ProfileView/ProfileView';
+import { ProfileView } from './pages/Profile';
 import { Profile } from './models/Profile';
 import { Login } from './models/Login';
 import { LoginView } from './views/LoginView/LoginView';

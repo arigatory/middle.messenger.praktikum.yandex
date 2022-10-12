@@ -1,9 +1,11 @@
 /* eslint-disable class-methods-use-this */
+import { SignUpData } from '../../api/AuthAPI';
 import { Button } from '../../components/Button';
 import { FormInput } from '../../components/FormInput';
 import { Link } from '../../components/Link';
 import Block from '../../utils/Block';
 import template from './registration.pug';
+import AuthController from '../../controllers/AuthController';
 import './registration.scss';
 
 export class RegistrationPage extends Block {
@@ -53,14 +55,29 @@ export class RegistrationPage extends Block {
     this.children.button = new Button({
       label: 'Зарегистрироваться',
       events: {
-        click: () => console.log('button clicked'),
+        click: () => this.onSubmit(),
       },
     });
 
     this.children.link = new Link({
       to: '/login',
-      label: 'Войти?'
+      label: 'Войти?',
     });
+  }
+
+  onSubmit() {
+    const values = Object.values(this.children)
+      .filter((child) => child instanceof FormInput)
+      .map((child) => [
+        (child as FormInput).getName(),
+        (child as FormInput).getValue(),
+      ]);
+    
+    const data = Object.fromEntries(values);
+
+    AuthController.signup(data as SignUpData);
+
+    console.log(values);
   }
 
   render() {

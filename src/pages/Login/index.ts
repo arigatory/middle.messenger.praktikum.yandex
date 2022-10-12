@@ -2,12 +2,11 @@
 import { Button } from '../../components/Button';
 import { FormInput } from '../../components/FormInput';
 import { Link } from '../../components/Link';
-import { withRouter } from '../../hocs/withRouter';
 import Block from '../../utils/Block';
 import template from './login.pug';
 import './login.scss';
 
-class LoginPageTemp extends Block {
+export class LoginPage extends Block {
   init() {
     this.children.login = new FormInput({
       name: 'login',
@@ -24,7 +23,7 @@ class LoginPageTemp extends Block {
     this.children.button = new Button({
       label: 'Войти',
       events: {
-        click: () => this.props.router.go('/'),
+        click: () => this.onSubmit(),
       },
     });
 
@@ -34,9 +33,17 @@ class LoginPageTemp extends Block {
     });
   }
 
+
+  onSubmit() {
+    const values = Object
+      .values(this.children)
+      .filter(child => child instanceof FormInput)
+    .map((child) => ([(child as FormInput).getName(), (child as FormInput).getValue()]));
+  
+    console.log(values);
+  }
+
   render() {
     return this.compile(template, { ...this.props });
   }
 }
-
-export const LoginPage = withRouter(LoginPageTemp);
