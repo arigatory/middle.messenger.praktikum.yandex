@@ -1,8 +1,9 @@
 import Block from '../../utils/Block';
+import { PropsWithRouter, withRouter } from '../../hocs/withRouter';
 import template from './link.pug';
 import './link.scss';
 
-interface LinkProps {
+interface LinkProps extends PropsWithRouter {
   to: string;
   label: string;
   events?: {
@@ -10,12 +11,23 @@ interface LinkProps {
   };
 }
 
-export class Link extends Block<LinkProps> {
+class BaseLink extends Block<LinkProps> {
   constructor(props: LinkProps) {
-    super(props);
+    super({
+      ...props,
+      events: {
+        click: () => this.navigate()
+      },
+    });
+  }
+
+  navigate() {
+    this.props.router.go(this.props.to);
   }
 
   render() {
     return this.compile(template, { ...this.props });
   }
 }
+
+export const Link = withRouter(BaseLink);

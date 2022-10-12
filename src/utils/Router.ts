@@ -50,6 +50,7 @@ class Router {
   private routes: Route[] = [];
   private currentRoute: Route | null = null;
   private history = window.history;
+  private defaultNotFoundPage?: Block | null;
 
   constructor(private readonly rootQuery: string) {
     if (Router.__instance) {
@@ -59,6 +60,10 @@ class Router {
     this.routes = [];
 
     Router.__instance = this;
+  }
+
+  public setNotFoundPage(notFoundPage: Block) {
+    this.defaultNotFoundPage = notFoundPage;
   }
 
   public use(pathname: string, block: typeof Block) {
@@ -82,7 +87,9 @@ class Router {
     const route = this.getRoute(pathname);
 
     if (!route) {
-      // TODO: redirect to 404
+      if (this.defaultNotFoundPage) {
+        this.go('notFound');
+      }
       return;
     }
 
