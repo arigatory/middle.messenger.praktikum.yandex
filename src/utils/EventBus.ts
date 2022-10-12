@@ -25,7 +25,8 @@ export class EventBus<
     callback: Handler<Args[Event]>
   ) {
     if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      // throw new Error(`Нет события: ${event}`);
+      return;
     }
 
     this.listeners[event] = this.listeners[event]!.filter(

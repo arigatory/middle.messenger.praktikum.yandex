@@ -11,7 +11,7 @@ import './registration.scss';
 export class RegistrationPage extends Block {
   init() {
     this.children.mail = new FormInput({
-      name: 'mail',
+      name: 'email',
       type: 'email',
       label: 'Почта',
     });
@@ -23,13 +23,13 @@ export class RegistrationPage extends Block {
     });
 
     this.children.firstName = new FormInput({
-      name: 'firstName',
+      name: 'first_name',
       type: 'text',
       label: 'Имя',
     });
 
     this.children.lastName = new FormInput({
-      name: 'lastName',
+      name: 'second_name',
       type: 'text',
       label: 'Фамилия',
     });
@@ -76,8 +76,6 @@ export class RegistrationPage extends Block {
     const data = Object.fromEntries(values);
 
     AuthController.signup(data as SignUpData);
-
-    console.log(values);
   }
 
   render() {

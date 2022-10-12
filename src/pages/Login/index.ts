@@ -1,7 +1,9 @@
 /* eslint-disable class-methods-use-this */
+import { SignInData } from '../../api/AuthAPI';
 import { Button } from '../../components/Button';
 import { FormInput } from '../../components/FormInput';
 import { Link } from '../../components/Link';
+import AuthController from '../../controllers/AuthController';
 import Block from '../../utils/Block';
 import template from './login.pug';
 import './login.scss';
@@ -35,12 +37,16 @@ export class LoginPage extends Block {
 
 
   onSubmit() {
-    const values = Object
-      .values(this.children)
-      .filter(child => child instanceof FormInput)
-    .map((child) => ([(child as FormInput).getName(), (child as FormInput).getValue()]));
-  
-    console.log(values);
+    const values = Object.values(this.children)
+      .filter((child) => child instanceof FormInput)
+      .map((child) => [
+        (child as FormInput).getName(),
+        (child as FormInput).getValue(),
+      ]);
+    
+    const data = Object.fromEntries(values);
+
+    AuthController.signin(data as SignInData);
   }
 
   render() {

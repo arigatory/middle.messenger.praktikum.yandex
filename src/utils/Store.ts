@@ -14,7 +14,7 @@ export class Store extends EventBus {
     },
   };
 
-  private set(keypath: string, data: unknown) {
+  public set(keypath: string, data: unknown) {
     set(this.state, keypath, data);
 
     this.emit(StoreEvents.Updated, this.getState());
