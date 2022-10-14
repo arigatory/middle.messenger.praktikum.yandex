@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import { Chat } from '../Chat';
-import template from './chatList.pug';
-import './chatlist.scss';
+import template from './chatsList.pug';
+import './chatsList.scss';
 
 const chats = [
   {

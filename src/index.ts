@@ -4,7 +4,8 @@ import { RegistrationPage } from './pages/Registration';
 import Router from './utils/Router';
 import store from './utils/Store';
 import AuthController from './controllers/AuthController';
-import { ChatList } from './components/ChatList';
+import { ChatList } from './components/ChatsList';
+import { MessengerPage } from './pages/Messenger';
 
 declare global {
   interface Window {
@@ -18,7 +19,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   Router.use('/profile', ProfilePage)
     .use('/', LoginPage)
     .use('/registration', RegistrationPage)
-    .use('/chatlist', ChatList);
+    .use('/chatlist', ChatList)
+    .use('/messenger', MessengerPage);
 
   try {
     await AuthController.fetchUser();
@@ -29,6 +31,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   } catch (e) {
     console.error(e);
     Router.start();
-    Router.go('/chatlist');
+    Router.go('/messenger');
   }
 });

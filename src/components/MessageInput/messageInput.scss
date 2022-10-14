@@ -1,0 +1,11 @@
+@import '../../css/common.scss';
+@import '../../css/mixin.scss';
+
+.input {
+  @include input;
+
+  &::placeholder {
+    text-align: center;
+    color: #aaaaaa;
+  }
+}
