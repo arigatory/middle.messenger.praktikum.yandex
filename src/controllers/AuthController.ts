@@ -16,10 +16,16 @@ export class AuthController {
   }
 
   public async signup(data: SignUpData) {
-    await this.api.signup(data);
-    await this.fetchUser();
+    try {
+      await this.api.signup(data);
+      await this.fetchUser();
+  
+      router.go('/profile');      
+    } catch (error) {
+      alert(error);
+      // store.set('error', {text: error.message});
+    }
 
-    router.go('/profile');
   }
 
   async fetchUser() {
@@ -31,7 +37,7 @@ export class AuthController {
 
   async logout() {
     await this.api.logout();
-    router.go('/login');
+    router.go('/');
   }
 }
 

@@ -60,7 +60,7 @@ export class RegistrationPage extends Block {
     });
 
     this.children.link = new Link({
-      to: '/login',
+      to: '/',
       label: 'Войти?',
     });
   }

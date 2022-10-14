@@ -1,0 +1,6 @@
+aside.chats-list
+  if {isLoaded}
+    each chat in {chats}
+      |!{chat}
+  else
+    p Loading...
