@@ -17,12 +17,7 @@ interface State {
 }
 
 export class Store extends EventBus {
-  private state: any = {
-    user: {
-      login: 'ivan',
-      email: 'ivan@gmail.com',
-    },
-  };
+  private state: any = {};
 
   public set(keypath: string, data: unknown) {
     set(this.state, keypath, data);
@@ -40,10 +35,8 @@ const store = new Store();
 window.store = store;
 
 export function withStore<SP>(mapStateToProps: (state: State) => SP) {
-  return function wrap<P>(Component: typeof Block<any>){
-
+  return function wrap<P>(Component: typeof Block<any>) {
     return class WithStore extends Component {
-
       constructor(props: Omit<P, keyof SP>) {
         let previousState = mapStateToProps(store.getState());
 
@@ -52,18 +45,12 @@ export function withStore<SP>(mapStateToProps: (state: State) => SP) {
         store.on(StoreEvents.Updated, () => {
           const stateProps = mapStateToProps(store.getState());
 
-          if (isEqual(stateProps as object, previousState as object))
-            return;
-          
           previousState = stateProps;
 
           this.setProps({ ...stateProps });
         });
-
       }
-
-    }
-
-  }
+    };
+  };
 }
 export default store;

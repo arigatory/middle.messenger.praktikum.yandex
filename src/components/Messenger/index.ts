@@ -10,7 +10,7 @@ import './messenger.scss';
 import { withStore } from '../../utils/Store';
 
 interface MessengerProps {
-  selectedChat?: number;
+  selectedChat: number | undefined;
   messages: MessageInfo[];
   userId: number;
 } 
@@ -20,7 +20,7 @@ export class MessengerBase extends Block<MessengerProps> {
     super(props);
   }
 
-  protected init(): void {
+  protected init() {
     this.children.messages = this.createMessages(this.props);
 
     this.children.input = new Input({
@@ -35,16 +35,12 @@ export class MessengerBase extends Block<MessengerProps> {
       // type: 'button',
       events: {
         click: () => {
-          if (!this.props.selectedChat) {
-            return;
-          }
-
           const input = this.children.input as Input;
           const message = input.getValue();
 
           input.setValue('');
 
-          MessagesController.sendMessage(this.props.selectedChat, message);
+          MessagesController.sendMessage(this.props.selectedChat!, message);
         },
       },
     });
@@ -60,7 +56,7 @@ export class MessengerBase extends Block<MessengerProps> {
 
   private createMessages(props: MessengerProps) {
     return props.messages.map((data) => {
-      return new Message({...data, isMine: props.userId === data.user_id });
+      return new Message({ ...data, isMine: props.userId === data.user_id });
     });
   }
 
@@ -72,14 +68,16 @@ export class MessengerBase extends Block<MessengerProps> {
 const withSelectedChatMessages = withStore((state) => {
   const selectedChatId = state.selectedChat;
   if (!selectedChatId) return {
-    messages:  [],
+    messages: [],
     selectedChat: undefined,
+    userId: state.user.id,
   };
 
 
   return {
     messages: (state.messages || {})[selectedChatId] || [],
     selectedChat: state.selectedChat,
+    userId: state.user.id,
   };
 });
 
