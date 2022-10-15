@@ -1,9 +1,10 @@
 import Block from '../../utils/Block';
-import template from './messenger.hbs';
-import { Message } from '../Message';
 import { Button } from '../Button';
-import { withStore } from '../../utils/Store';
-import { MessageInput } from '../MessageInput';
+import { Input } from '../Input';
+import { Message } from '../Message';
+import { Message as MessageInfo } from '../../controllers/MessagesController';
+import template from './messenger.pug';
+import './messenger.scss';
 
 interface MessengerProps {
   selectedChat: number | undefined;
@@ -11,66 +12,55 @@ interface MessengerProps {
   userId: number;
 }
 
-class Messenger extends Block<MessengerProps> {
-  constructor(props: MessengerProps) {
-    super(props);
-  }
-  protected init() {
-    this.children.messages = this.createMessages(this.props);
+const messages = [
+  {
+    content: 'Hello world !'
+  },
+  {
+    content: 'ho ho ho !'
+  },
 
-    this.children.input = new MessageInput({
+];
+
+export class Messenger extends Block<{}> {
+  constructor() {
+    super({});
+  }
+
+  protected init(): void {
+    this.children.messages = messages.map(data => { 
+      return new Message(data)
+    });
+    
+    this.children.input = new Input({
+      label: 'Отправить',
       type: 'text',
-      placeholder: 'Сообщение',
+      placeholder: 'сообщение',
       name: 'message'
     });
 
     this.children.button = new Button({
       label: 'Отправить',
-      type: 'button',
+      // type: 'button',
       events: {
         click: () => {
           const input =this.children.input as Input;
           const message = input.getValue();
 
-          input.setValue('');
+          // input.setValue('');
 
-          MessagesController.sendMessage(this.props.selectedChat!, message);
+          console.log(message);
         }
       }
     });
+
   }
 
-  protected componentDidUpdate(oldProps: MessengerProps, newProps: MessengerProps): boolean {
-    this.children.messages = this.createMessages(newProps);
 
-    return true;
-  }
 
-  private createMessages(props: MessengerProps) {
-    return props.messages.map(data => {
-      return new Message({...data, isMine: props.userId === data.user_id });
-    })
-  }
 
   protected render(): DocumentFragment {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, { ...this.props });
   }
 }
 
-const withSelectedChatMessages = withStore(state => {
-  const selectedChatId = state.selectedChat;
-
-  if (!selectedChatId) {
-    return {
-      messages: [],
-      selectedChat: undefined,
-      userId: state.user.id
-    };
-  }
-
-  return {
-    messages: (state.messages || {})[selectedChatId] || [],
-    selectedChat: state.selectedChat,
-    userId: state.user.id
-  };
-});

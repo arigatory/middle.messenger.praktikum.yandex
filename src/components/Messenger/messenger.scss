@@ -1,29 +1,32 @@
-.messenger {
+.chat-detail {
   display: flex;
-  flex-flow: column nowrap;
-
-  width: 100%;
-  padding: 10px 30px;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: stretch;
+  justify-items: stretch;
+  position: relative;
 }
 
-.messenger__messages {
-display: flex;
-flex-direction: column;
+.chat-header-region {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  right: 0;
+  left: 0;
+  background: white;
 }
 
-.messenger__footer {
-  display: flex;
-  flex-flow: row nowrap;
-  width: 100%;
-
-  margin-top: auto;
+.messages-list-region {
+  padding: 10px;
+  padding-top: 100px;
+  flex-grow: 2;
 }
 
-.messenger__footer input {
-  width: 100%;
-  border-radius: 0;
-}
-
-.messenger__footer button {
-  margin-left: auto;
+.message-input-region {
+  position:fixed;
+  bottom: 0px;
+  right: 0;
+  left: 0;
+  background: white;
+  margin-left: 30%; 
 }

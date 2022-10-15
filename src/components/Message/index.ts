@@ -1,10 +1,9 @@
 import Block from '../../utils/Block';
 import template from './message.pug';
-import styles from './massage.scss';
+import './message.scss';
 
 interface MessageProps {
   content: string;
-  isMine: boolean;
 }
 
 export class Message extends Block<MessageProps> {
@@ -13,6 +12,6 @@ export class Message extends Block<MessageProps> {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, { ...this.props });
   }
 }
