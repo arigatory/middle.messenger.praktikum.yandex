@@ -7,28 +7,21 @@ import MessagesController, {
 } from '../../controllers/MessagesController';
 import template from './messenger.pug';
 import './messenger.scss';
-import { withSelectedChat } from '../Chat';
-import { ChatInfo } from '../../api/ChatsAPI';
+import { withStore } from '../../utils/Store';
 
 interface MessengerProps {
-  selectedChat: ChatInfo;
-}
-
-const messages = [
-  // {
-  //   content: 'Hello world !',
-  // },
-  // {
-  //   content: 'ho ho ho !',
-  // },
-];
+  selectedChat?: number;
+  messages: MessageInfo[];
+  userId: number;
+} 
 
 export class MessengerBase extends Block<MessengerProps> {
+  constructor(props: MessengerProps) {
+    super(props);
+  }
 
   protected init(): void {
-    this.children.messages = messages.map((data) => {
-      return new Message(data);
-    });
+    this.children.messages = this.createMessages(this.props);
 
     this.children.input = new Input({
       label: 'Отправить',
@@ -50,11 +43,24 @@ export class MessengerBase extends Block<MessengerProps> {
           const message = input.getValue();
 
           input.setValue('');
-          
-          MessagesController.sendMessage(this.props.selectedChat!.id, message);
-          console.log(message);
+
+          MessagesController.sendMessage(this.props.selectedChat, message);
         },
       },
+    });
+  }
+
+  protected componentDidUpdate(
+    _oldProps: MessengerProps,
+    newProps: MessengerProps
+  ): boolean {
+    this.children.messages = this.createMessages(newProps);
+    return true;
+  }
+
+  private createMessages(props: MessengerProps) {
+    return props.messages.map((data) => {
+      return new Message({...data, isMine: props.userId === data.user_id });
     });
   }
 
@@ -63,4 +69,18 @@ export class MessengerBase extends Block<MessengerProps> {
   }
 }
 
-export const Messenger = withSelectedChat(MessengerBase);
+const withSelectedChatMessages = withStore((state) => {
+  const selectedChatId = state.selectedChat;
+  if (!selectedChatId) return {
+    messages:  [],
+    selectedChat: undefined,
+  };
+
+
+  return {
+    messages: (state.messages || {})[selectedChatId] || [],
+    selectedChat: state.selectedChat,
+  };
+});
+
+export const Messenger = withSelectedChatMessages(MessengerBase);

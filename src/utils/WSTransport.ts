@@ -60,7 +60,13 @@ export default class WSTransport extends EventBus {
     });
 
     socket.addEventListener('message', (message) => {
-      this.emit(WSTransportEvents.Message, JSON.parse(message.data));
+      const data = JSON.parse(message.data);
+
+      if (data.type && data.type === 'pong') {
+        return;
+      }
+
+      this.emit(WSTransportEvents.Message, data);
     });
   }
 }

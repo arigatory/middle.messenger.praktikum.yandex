@@ -36,7 +36,7 @@ class MessagesController {
 
     await wsTransport.connect();
 
-    this.subscribe(wsTransport, chatId);  
+    this.subscribe(wsTransport, chatId);
 
     this.fetchOldMessages(chatId);
   }
@@ -61,7 +61,21 @@ class MessagesController {
     socket.send({ type: 'get old', content: '0' });
   }
 
-  private onMessage(chatId: number, message: any) {}
+  private onMessage(chatId: number, messages: Message | Message[]) {
+    let messagesToAdd: Message[] = [];
+    if (Array.isArray(messages)) {
+      messagesToAdd = messages.reverse();
+    } else {
+      messagesToAdd.push(messages);
+    }
+
+    const currentMessages = (store.getState().messages || {})[chatId] || [];
+
+    console.log(currentMessages);
+    messagesToAdd = [...currentMessages, ...messagesToAdd];
+
+    store.set(`messages.${chatId}`, messagesToAdd);
+  }
 
   private onClose(chatId: number) {
     this.sockets.delete(chatId);
@@ -81,4 +95,3 @@ const controller = new MessagesController();
 window.messagesController = controller;
 
 export default controller;
-

@@ -6,23 +6,6 @@ import { Chat } from '../Chat';
 import template from './chatsList.pug';
 import './chatsList.scss';
 
-const chats = [
-  {
-    id: 1,
-    title: 'Chat 1',
-    unread_count: 2,
-  },
-  {
-    id: 1,
-    title: 'Chat 2',
-    unread_count: 0,
-  },
-  {
-    id: 1,
-    title: 'Chat 3',
-    unread_count: 0,
-  },
-];
 
 interface ChatsListProps {
   chats: ChatInfo[];
@@ -39,22 +22,22 @@ class ChatsListBase extends Block<ChatsListProps> {
   }
 
   protected componentDidUpdate(
-    oldProps: ChatsListProps,
+    _oldProps: ChatsListProps,
     newProps: ChatsListProps
   ): boolean {
     this.children.chats = this.createChats(newProps);
-    return super.componentDidUpdate(oldProps, newProps);
+    return true;
   }
- 
+
   private createChats(props: ChatsListProps) {
-    return props.chats.map(data => {
+    return props.chats.map((data) => {
       return new Chat({
         ...data,
         events: {
           click: () => {
-            ChatsController.selectChat(data.id)
-          }
-        }
+            ChatsController.selectChat(data.id);
+          },
+        },
       });
     });
   }
