@@ -1,8 +1,11 @@
 .chat-detail
-  .chat-header-region
-  .messages-list-region
-    each message in messages
-        |!{message}
-  .message-input-region
-    |!{input}
-    |!{button}
+  if selectedChat
+    .chat-header-region
+    .messages-list-region
+      each message in messages
+          |!{message}
+    .message-input-region
+      |!{input}
+      |!{button}
+  else
+    p Чат не выбран

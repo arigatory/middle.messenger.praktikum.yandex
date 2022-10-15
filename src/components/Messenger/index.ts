@@ -2,41 +2,39 @@ import Block from '../../utils/Block';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import { Message } from '../Message';
-import { Message as MessageInfo } from '../../controllers/MessagesController';
+import MessagesController, {
+  Message as MessageInfo,
+} from '../../controllers/MessagesController';
 import template from './messenger.pug';
 import './messenger.scss';
+import { withSelectedChat } from '../Chat';
+import { ChatInfo } from '../../api/ChatsAPI';
 
 interface MessengerProps {
-  selectedChat: number | undefined;
-  messages: MessageInfo[];
-  userId: number;
+  selectedChat: ChatInfo;
 }
 
 const messages = [
-  {
-    content: 'Hello world !'
-  },
-  {
-    content: 'ho ho ho !'
-  },
-
+  // {
+  //   content: 'Hello world !',
+  // },
+  // {
+  //   content: 'ho ho ho !',
+  // },
 ];
 
-export class Messenger extends Block<{}> {
-  constructor() {
-    super({});
-  }
+export class MessengerBase extends Block<MessengerProps> {
 
   protected init(): void {
-    this.children.messages = messages.map(data => { 
-      return new Message(data)
+    this.children.messages = messages.map((data) => {
+      return new Message(data);
     });
-    
+
     this.children.input = new Input({
       label: 'Отправить',
       type: 'text',
       placeholder: 'сообщение',
-      name: 'message'
+      name: 'message',
     });
 
     this.children.button = new Button({
@@ -44,23 +42,25 @@ export class Messenger extends Block<{}> {
       // type: 'button',
       events: {
         click: () => {
-          const input =this.children.input as Input;
+          if (!this.props.selectedChat) {
+            return;
+          }
+
+          const input = this.children.input as Input;
           const message = input.getValue();
 
-          // input.setValue('');
-
+          input.setValue('');
+          
+          MessagesController.sendMessage(this.props.selectedChat!.id, message);
           console.log(message);
-        }
-      }
+        },
+      },
     });
-
   }
-
-
-
 
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }
 }
 
+export const Messenger = withSelectedChat(MessengerBase);

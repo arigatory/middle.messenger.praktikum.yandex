@@ -4,7 +4,7 @@ import { RegistrationPage } from './pages/Registration';
 import Router from './utils/Router';
 import store from './utils/Store';
 import AuthController from './controllers/AuthController';
-import { ChatList } from './components/ChatsList';
+import { ChatsList } from './components/ChatsList';
 import { MessengerPage } from './pages/Messenger';
 
 declare global {
@@ -19,18 +19,18 @@ window.addEventListener('DOMContentLoaded', async () => {
   Router.use('/profile', ProfilePage)
     .use('/', LoginPage)
     .use('/registration', RegistrationPage)
-    .use('/chatlist', ChatList)
+    .use('/chatslist', ChatsList)
     .use('/messenger', MessengerPage);
 
   try {
     await AuthController.fetchUser();
     Router.start();
 
-    Router.go('/profile');
+    Router.go('/messenger');
 
   } catch (e) {
     console.error(e);
     Router.start();
-    Router.go('/messenger');
+    Router.go('/');
   }
 });

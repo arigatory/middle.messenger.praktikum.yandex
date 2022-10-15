@@ -1,7 +1,6 @@
 import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
 
-// Нельзя создавать экземпляр данного класса
 class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
@@ -39,13 +38,15 @@ class Block<P extends Record<string, any> = any> {
 
   _getChildrenAndProps(childrenAndProps: P): {
     props: P;
-    children: Record<string, Block>;
+    children: Record<string, Block|Block[]>;
   } {
     const props: Record<string, unknown> = {};
-    const children: Record<string, Block> = {};
+    const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if (value instanceof Block) {
+      if (Array.isArray(value) && value.length > 0 && value.every((value) => value instanceof Block)) {
+        children[key as string] = value;
+      } else if (value instanceof Block) {
         children[key as string] = value;
       } else {
         props[key] = value;
