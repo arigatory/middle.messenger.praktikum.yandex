@@ -4,25 +4,29 @@ import template from './link.pug';
 import './link.scss';
 
 interface LinkProps extends PropsWithRouter {
-  to: string;
+  to?: string;
   label: string;
   events?: {
     click: () => void;
   };
+  isDanger: boolean;
 }
 
 class BaseLink extends Block<LinkProps> {
   constructor(props: LinkProps) {
     super({
       ...props,
-      events: {
-        click: () => this.navigate()
-      },
+      events:
+        props.events === undefined
+          ? {
+              click: () => this.navigate(),
+            }
+          : props.events,
     });
   }
 
   navigate() {
-    this.props.router.go(this.props.to);
+    if (this.props.to) this.props.router.go(this.props.to);
   }
 
   render() {

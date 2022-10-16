@@ -1,5 +1,6 @@
 import { ChatsList as ChatsList } from '../../components/ChatsList';
 import { Messenger } from '../../components/Messenger';
+import { Navigation } from '../../components/Navigation';
 import ChatsController from '../../controllers/ChatsController';
 import Block from '../../utils/Block';
 import template from './messenger.pug';
@@ -11,14 +12,9 @@ export class MessengerPage extends Block {
   }
 
   protected init() {
-    this.children.chatsList = new ChatsList({isLoaded: false});
+    // this.children.chatsList = new ChatsList({isLoaded: false});
+    this.children.navigation = new Navigation({});
     this.children.messenger = new Messenger({});
-
-    ChatsController.fetchChats().finally(() => {
-      (this.children.chatsList as Block).setProps({
-        isLoaded: true,
-      });
-    });
   }
 
   protected render(): DocumentFragment {

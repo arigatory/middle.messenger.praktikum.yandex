@@ -71,7 +71,6 @@ class MessagesController {
 
     const currentMessages = (store.getState().messages || {})[chatId] || [];
 
-    console.log(currentMessages);
     messagesToAdd = [...currentMessages, ...messagesToAdd];
 
     store.set(`messages.${chatId}`, messagesToAdd);

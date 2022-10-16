@@ -5,18 +5,21 @@ import { withStore } from '../../utils/Store';
 import './profile.scss';
 import AuthController from '../../controllers/AuthController';
 import { Button } from '../../components/Button';
+import { Link } from '../../components/Link';
+import { Console } from 'console';
 
 export class ProfilePageBase extends Block {
   init() {
     AuthController.fetchUser();
 
-    this.children.button = new Button({
+    this.children.exitLink = new Link({
       label: 'Выйти',
       events: {
         click: () => {
           AuthController.logout();
         }
-      }
+      },
+      isDanger: true
     });
 
   }

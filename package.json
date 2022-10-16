@@ -40,6 +40,7 @@
     "assert": "2.0.0",
     "buffer": "6.0.3",
     "concurrently": "7.4.0",
+    "console-browserify": "^1.2.0",
     "eslint": "8.23.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",

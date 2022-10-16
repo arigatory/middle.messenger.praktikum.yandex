@@ -30,7 +30,7 @@ export class LoginPage extends Block {
     });
 
     this.children.link = new Link({
-      to: '/registration',
+      to: '/sign-up',
       label: 'Регистрация',
     });
   }

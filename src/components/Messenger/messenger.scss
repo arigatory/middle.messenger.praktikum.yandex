@@ -17,6 +17,8 @@
 }
 
 .messages-list-region {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   padding-top: 100px;
   flex-grow: 2;

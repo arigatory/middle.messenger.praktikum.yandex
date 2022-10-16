@@ -3,7 +3,7 @@ import { ChatInfo } from '../api/ChatsAPI';
 import { Message } from '../controllers/MessagesController';
 import Block from './Block';
 import { EventBus } from './EventBus';
-import { isEqual, set } from './helpers';
+import { set } from './helpers';
 
 export enum StoreEvents {
   Updated = 'updated',

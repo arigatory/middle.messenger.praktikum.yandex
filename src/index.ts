@@ -16,16 +16,15 @@ declare global {
 window.store = store;
 
 window.addEventListener('DOMContentLoaded', async () => {
-  Router.use('/profile', ProfilePage)
+  Router.use('/settings', ProfilePage)
     .use('/', LoginPage)
-    .use('/registration', RegistrationPage)
+    .use('/sign-up', RegistrationPage)
     .use('/chatslist', ChatsList)
     .use('/messenger', MessengerPage);
 
   try {
     await AuthController.fetchUser();
     Router.start();
-
     Router.go('/messenger');
 
   } catch (e) {
