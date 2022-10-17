@@ -28,16 +28,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use('/passwordChange', PasswordChangePage)
     .use('/editAccount', EditAccountPage)
     .use('/success', SuccessPage)
-    .use('/404', NotFoundPage);
-
+    .use('/notFound', NotFoundPage);
+  Router.setNotFoundPage(new NotFoundPage({}));
   try {
     await AuthController.fetchUser();
     Router.start();
-    // Router.go('/messenger');
-
-  } catch (e) {
-    console.error(e);
-    Router.start();
-    Router.go('/');
+  } catch (e: any) {
+    if (e.reason === 'Cookie is not valid') {
+      Router.go('/');
+    } else {
+      Router.go('/notFound');
+    }
   }
 });
