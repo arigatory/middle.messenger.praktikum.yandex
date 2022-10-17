@@ -11,3 +11,12 @@
     cursor: pointer;
   }
 }
+
+.disabled {
+  opacity: 0.5;
+  &:hover {
+    font-weight: normal;
+    background-color: red;
+    cursor: not-allowed !important;
+  }
+}

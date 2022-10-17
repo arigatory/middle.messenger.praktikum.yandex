@@ -45,6 +45,10 @@ export class FormInput extends Block<FormInputProps> {
     return (this.children.input as Input).getValue();
   }
 
+  public countErrors(): number {
+    return (this.children.validationErrors as ValidationErrors).count();
+  }
+
   render() {
     return this.compile(template, { ...this.props });
   }

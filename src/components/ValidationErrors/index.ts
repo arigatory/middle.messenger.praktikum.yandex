@@ -11,6 +11,10 @@ export class ValidationErrors extends Block<ValidationErrorsProps> {
     super(props);
   }
 
+  public count(): number {
+    return this.props.errors.length;
+  }
+
   protected render(): DocumentFragment {
     return this.compile(template, { ...this.props });
   }

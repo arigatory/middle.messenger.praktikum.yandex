@@ -5,7 +5,7 @@ import { FormInput } from '../../components/FormInput';
 import { Link } from '../../components/Link';
 import AuthController from '../../controllers/AuthController';
 import Block from '../../utils/Block';
-import { loginErrors, passwordErrors } from '../../utils/validation';
+import { loginErrors } from '../../utils/validation';
 import template from './login.pug';
 import './login.scss';
 
@@ -15,14 +15,18 @@ export class LoginPage extends Block {
       name: 'login',
       type: 'text',
       label: 'Логин',
-      validate: loginErrors,
+      validate: (s) => {
+        const res = loginErrors(s);
+        this.totalErrors();
+        return res;
+      },
     });
 
     this.children.password = new FormInput({
       name: 'password',
       type: 'password',
       label: 'Пароль',
-      validate: ()=>[],
+      validate: () => [],
     });
 
     this.children.button = new Button({
@@ -30,14 +34,30 @@ export class LoginPage extends Block {
       events: {
         click: () => this.onSubmit(),
       },
+      disabled: false,
     });
 
     this.children.link = new Link({
       to: '/sign-up',
       label: 'Регистрация',
     });
+
+    this.props.totalErrors = this.totalErrors();
   }
 
+  totalErrors(): number {
+    const res = Object.values(this.children)
+      .filter((child) => child instanceof FormInput)
+      .map((child) => (child as FormInput).countErrors())
+      .reduce((partialSum, a) => partialSum + a, 0);
+    console.log(res);
+    if (this.children.button) {
+      (this.children.button as Block).setProps({
+        disabled: res > 0,
+      });
+    }
+    return res;
+  }
 
   onSubmit() {
     const values = Object.values(this.children)
@@ -46,7 +66,7 @@ export class LoginPage extends Block {
         (child as FormInput).getName(),
         (child as FormInput).getValue(),
       ]);
-    
+
     const data = Object.fromEntries(values);
 
     AuthController.signin(data as SignInData);
