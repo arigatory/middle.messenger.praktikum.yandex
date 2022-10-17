@@ -21,7 +21,6 @@ export class MessageInputView extends View<MessageInput, MessageInputProps> {
   onSendMessage = (): void => {
     const input = this.parent.querySelector('input');
     if (input?.value) {
-      console.log(input?.value);
       this.model.update('text', input?.value);
     }
   };

@@ -60,9 +60,7 @@ export class PasswordChangePageBase extends Block {
 
     const data = Object.fromEntries(values);
 
-    console.log(data)
     UsersController.changePassword(data);
-    // AuthController.signin(data as SignInData);
   }
 }
 const withUser = withStore((state) => ({ ...state.user }));

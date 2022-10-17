@@ -8,7 +8,7 @@ export interface InputProps {
   name: string;
   placeholder?: string;
   value?: string;
-  events: {
+  events?: {
     input: () => void;
   }
 }

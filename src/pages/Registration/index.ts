@@ -84,6 +84,7 @@ export class RegistrationPage extends Block {
       events: {
         click: () => this.onSubmit(),
       },
+      disabled: true
     });
 
     this.children.link = new Link({
@@ -97,7 +98,6 @@ export class RegistrationPage extends Block {
       .filter((child) => child instanceof FormInput)
       .map((child) => (child as FormInput).countErrors())
       .reduce((partialSum, a) => partialSum + a, 0);
-    console.log(res);
     if (this.children.button) {
       (this.children.button as Block).setProps({
         disabled: res > 0,

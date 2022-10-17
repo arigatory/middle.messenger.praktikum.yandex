@@ -16,8 +16,6 @@ export class Button extends Block<ButtonProps> {
   }
 
   protected init(): void {
-    this.props.disabled = true;
-
     if (this.props.disabled) {
       this.disable();
     } else {
@@ -37,7 +35,6 @@ export class Button extends Block<ButtonProps> {
   }
 
   private enable() {
-    console.log(this.element);
     if (this.element) {
       (this.element as HTMLButtonElement).classList.remove('disabled');
       (this.element as HTMLButtonElement).addEventListener(

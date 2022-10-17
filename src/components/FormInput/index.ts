@@ -25,7 +25,6 @@ export class FormInput extends Block<FormInputProps> {
       label: this.props.label,
       events: {
         input: () => {
-          console.log(this.children.validationErrors);
           (this.children.validationErrors as Block).setProps({
             errors: this.props.validate(this.getValue()),
           });

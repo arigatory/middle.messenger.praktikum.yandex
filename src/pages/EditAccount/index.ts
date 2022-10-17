@@ -70,7 +70,6 @@ export class EditAccountPageBase extends Block {
         },
       },
     });
-    console.log(this.props);
   }
   render() {
     return this.compile(template, this.props);
@@ -86,7 +85,6 @@ export class EditAccountPageBase extends Block {
 
     const data = Object.fromEntries(values);
 
-    console.log(data);
     UsersController.updateProfile(data);
   }
 }
