@@ -1,4 +1,5 @@
 import BaseAPI from './BaseAPI';
+import { User } from './UsersAPI';
 
 export interface SignInData {
   login: string;
@@ -14,16 +15,7 @@ export interface SignUpData {
   phone: string;
 }
 
-export interface User {
-  id: number;
-  first_name: string;
-  second_name: string;
-  display_name: string;
-  login: string;
-  email: string;
-  phone: string;
-  avatar: string;
-}
+
 
 export class AuthAPI extends BaseAPI {
   constructor() {

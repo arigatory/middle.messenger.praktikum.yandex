@@ -6,6 +6,10 @@ import store from './utils/Store';
 import AuthController from './controllers/AuthController';
 import { ChatsList } from './components/ChatsList';
 import { MessengerPage } from './pages/Messenger';
+import { NotFoundPage } from './pages/NotFound';
+import { PasswordChangePage } from './pages/PasswordChange';
+import { SuccessPage } from './pages/Success';
+import { EditAccountPage } from './pages/EditAccount';
 
 declare global {
   interface Window {
@@ -20,12 +24,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use('/', LoginPage)
     .use('/sign-up', RegistrationPage)
     .use('/chatslist', ChatsList)
-    .use('/messenger', MessengerPage);
+    .use('/messenger', MessengerPage)
+    .use('/passwordChange', PasswordChangePage)
+    .use('/editAccount', EditAccountPage)
+    .use('/success', SuccessPage)
+    .use('/404', NotFoundPage);
 
   try {
     await AuthController.fetchUser();
     Router.start();
-    Router.go('/messenger');
+    // Router.go('/messenger');
 
   } catch (e) {
     console.error(e);

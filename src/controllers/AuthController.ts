@@ -9,7 +9,7 @@ export class AuthController {
     this.api = API;
   }
 
-  async signin(data: SignInData) {
+  public async signin(data: SignInData) {
     try {
       await this.api.signin(data);
       await this.fetchUser();

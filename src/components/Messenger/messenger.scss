@@ -25,10 +25,23 @@
 }
 
 .message-input-region {
+  display: flex;
+  align-items: center;
   position:fixed;
   bottom: 0px;
   right: 0;
   left: 0;
   background: white;
   margin-left: 30%; 
+}
+
+.no-chat {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #999;
+  font-size: 30px;
 }

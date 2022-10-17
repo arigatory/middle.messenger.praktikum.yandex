@@ -3,7 +3,7 @@ import { PropsWithRouter, withRouter } from '../../hocs/withRouter';
 import template from './link.pug';
 import './link.scss';
 
-interface LinkProps extends PropsWithRouter {
+export interface LinkProps extends PropsWithRouter {
   to?: string;
   label: string;
   events?: {

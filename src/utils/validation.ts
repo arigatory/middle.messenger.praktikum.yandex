@@ -11,8 +11,7 @@ const allowedLength = (s: string, min: number, max: number): boolean =>
 
 const allowedChars = (s: string): boolean => /^[a-zA-Z0-9_-\s]*$/.test(s);
 
-const allowedNameChars = (s: string): boolean =>
-  /^[a-zA-Zа-яА-Я-\s]*$/.test(s);
+const allowedNameChars = (s: string): boolean => /^[a-zA-Zа-яА-Я-\s]*$/.test(s);
 
 const allowedEmailChars = (s: string): boolean => /^[a-zA-Z0-9-.@]*$/g.test(s);
 
@@ -43,7 +42,7 @@ export const loginErrors = (login: string): string[] => {
   }
   if (!allowedChars(login)) {
     result.push(
-      'Логин должен быть без спецсимволов (допустимы дефис и нижнее подчёркивание)',
+      'Логин должен быть без спецсимволов (допустимы дефис и нижнее подчёркивание)'
     );
   }
   return result;

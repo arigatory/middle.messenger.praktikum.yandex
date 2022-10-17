@@ -1,5 +1,5 @@
-import { User } from '../api/AuthAPI';
 import { ChatInfo } from '../api/ChatsAPI';
+import { User } from '../api/UsersAPI';
 import { Message } from '../controllers/MessagesController';
 import Block from './Block';
 import { EventBus } from './EventBus';
