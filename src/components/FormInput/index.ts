@@ -10,6 +10,7 @@ interface FormInputProps {
   name: string;
   placeholder?: string;
   validate: (arg: string) => string[];
+  updateButton?: () => void;
 }
 
 export class FormInput extends Block<FormInputProps> {
@@ -28,6 +29,8 @@ export class FormInput extends Block<FormInputProps> {
           (this.children.validationErrors as Block).setProps({
             errors: this.props.validate(this.getValue()),
           });
+          if (this.props.updateButton) 
+            this.props.updateButton();
         },
       },
     });

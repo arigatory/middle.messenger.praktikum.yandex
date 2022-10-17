@@ -22,6 +22,7 @@ export class RegistrationPage extends Block {
       type: 'email',
       label: 'Почта',
       validate: emailErrors,
+      updateButton: () => this.updateButton()
     });
 
     this.children.login = new FormInput({
@@ -29,6 +30,7 @@ export class RegistrationPage extends Block {
       type: 'text',
       label: 'Логин',
       validate: loginErrors,
+      updateButton: () => this.updateButton()
     });
 
     this.children.firstName = new FormInput({
@@ -36,6 +38,7 @@ export class RegistrationPage extends Block {
       type: 'text',
       label: 'Имя',
       validate: nameErrors,
+      updateButton: () => this.updateButton()
     });
 
     this.children.lastName = new FormInput({
@@ -43,6 +46,7 @@ export class RegistrationPage extends Block {
       type: 'text',
       label: 'Фамилия',
       validate: nameErrors,
+      updateButton: () => this.updateButton()
     });
 
     this.children.phone = new FormInput({
@@ -50,6 +54,7 @@ export class RegistrationPage extends Block {
       type: 'text',
       label: 'Телефон',
       validate: phoneErrors,
+      updateButton: () => this.updateButton()
     });
 
     this.children.password = new FormInput({
@@ -57,6 +62,7 @@ export class RegistrationPage extends Block {
       type: 'password',
       label: 'Пароль',
       validate: passwordErrors,
+      updateButton: () => this.updateButton()
     });
 
     this.children.passwordRepeat = new FormInput({
@@ -70,6 +76,7 @@ export class RegistrationPage extends Block {
         }
         return newErrors;
       },
+      updateButton: () => this.updateButton()
     });
 
     this.children.button = new Button({
@@ -85,6 +92,18 @@ export class RegistrationPage extends Block {
     });
   }
 
+  updateButton() {
+    const res = Object.values(this.children)
+      .filter((child) => child instanceof FormInput)
+      .map((child) => (child as FormInput).countErrors())
+      .reduce((partialSum, a) => partialSum + a, 0);
+    console.log(res);
+    if (this.children.button) {
+      (this.children.button as Block).setProps({
+        disabled: res > 0,
+      });
+    }
+  }
   onSubmit() {
     const values = Object.values(this.children)
       .filter((child) => child instanceof FormInput)

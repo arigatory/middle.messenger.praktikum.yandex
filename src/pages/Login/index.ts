@@ -15,18 +15,15 @@ export class LoginPage extends Block {
       name: 'login',
       type: 'text',
       label: 'Логин',
-      validate: (s) => {
-        const res = loginErrors(s);
-        this.totalErrors();
-        return res;
-      },
+      validate: loginErrors,
+      updateButton: () => this.updateButton()
     });
 
     this.children.password = new FormInput({
       name: 'password',
       type: 'password',
       label: 'Пароль',
-      validate: () => [],
+      validate: () => []
     });
 
     this.children.button = new Button({
@@ -42,10 +39,9 @@ export class LoginPage extends Block {
       label: 'Регистрация',
     });
 
-    this.props.totalErrors = this.totalErrors();
   }
 
-  totalErrors(): number {
+  updateButton(){
     const res = Object.values(this.children)
       .filter((child) => child instanceof FormInput)
       .map((child) => (child as FormInput).countErrors())
@@ -56,10 +52,11 @@ export class LoginPage extends Block {
         disabled: res > 0,
       });
     }
-    return res;
   }
 
   onSubmit() {
+    if ((this.children.button as Button).isDisabled())
+      return
     const values = Object.values(this.children)
       .filter((child) => child instanceof FormInput)
       .map((child) => [
