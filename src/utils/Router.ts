@@ -85,7 +85,6 @@ class Router {
 
   private _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
-
     if (!route) {
       if (this.defaultNotFoundPage) {
         this.go('notFound');

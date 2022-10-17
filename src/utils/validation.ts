@@ -66,9 +66,14 @@ export const passwordErrors = (password: string): string[] => {
 export const nameErrors = (name: string): string[] => {
   const result: string[] = [];
 
+  if (!allowedLength(name, 3, 20)) {
+    result.push('Имя и фамилия должны быть от 3 до 20 символов');
+  }
+
   if (!allowedNameChars(name)) {
     result.push('Разрешено исользовать только латиницу или кириллицу');
   }
+
 
   return result;
 };

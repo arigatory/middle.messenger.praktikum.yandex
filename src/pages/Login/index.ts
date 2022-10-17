@@ -5,6 +5,7 @@ import { FormInput } from '../../components/FormInput';
 import { Link } from '../../components/Link';
 import AuthController from '../../controllers/AuthController';
 import Block from '../../utils/Block';
+import { loginErrors, passwordErrors } from '../../utils/validation';
 import template from './login.pug';
 import './login.scss';
 
@@ -14,12 +15,14 @@ export class LoginPage extends Block {
       name: 'login',
       type: 'text',
       label: 'Логин',
+      validate: loginErrors,
     });
 
     this.children.password = new FormInput({
       name: 'password',
       type: 'password',
       label: 'Пароль',
+      validate: ()=>[],
     });
 
     this.children.button = new Button({

@@ -7,6 +7,13 @@ import Block from '../../utils/Block';
 import template from './registration.pug';
 import AuthController from '../../controllers/AuthController';
 import './registration.scss';
+import {
+  emailErrors,
+  loginErrors,
+  nameErrors,
+  passwordErrors,
+  phoneErrors,
+} from '../../utils/validation';
 
 export class RegistrationPage extends Block {
   init() {
@@ -14,42 +21,55 @@ export class RegistrationPage extends Block {
       name: 'email',
       type: 'email',
       label: 'Почта',
+      validate: emailErrors,
     });
 
     this.children.login = new FormInput({
       name: 'login',
       type: 'text',
       label: 'Логин',
+      validate: loginErrors,
     });
 
     this.children.firstName = new FormInput({
       name: 'first_name',
       type: 'text',
       label: 'Имя',
+      validate: nameErrors,
     });
 
     this.children.lastName = new FormInput({
       name: 'second_name',
       type: 'text',
       label: 'Фамилия',
+      validate: nameErrors,
     });
 
     this.children.phone = new FormInput({
       name: 'phone',
       type: 'text',
       label: 'Телефон',
+      validate: phoneErrors,
     });
 
     this.children.password = new FormInput({
       name: 'password',
       type: 'password',
       label: 'Пароль',
+      validate: passwordErrors,
     });
 
     this.children.passwordRepeat = new FormInput({
       name: 'passwordRepeat',
       type: 'password',
       label: 'Пароль (ещё раз)',
+      validate: (s) => {
+        const newErrors = passwordErrors(s);
+        if ((this.children.password as FormInput).getValue() !== s) {
+          newErrors.push('Пароли должны совпадать');
+        }
+        return newErrors;
+      },
     });
 
     this.children.button = new Button({
@@ -72,7 +92,7 @@ export class RegistrationPage extends Block {
         (child as FormInput).getName(),
         (child as FormInput).getValue(),
       ]);
-    
+
     const data = Object.fromEntries(values);
 
     AuthController.signup(data as SignUpData);

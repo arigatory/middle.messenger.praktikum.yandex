@@ -8,6 +8,9 @@ export interface InputProps {
   name: string;
   placeholder?: string;
   value?: string;
+  events: {
+    input: () => void;
+  }
 }
 
 export class Input extends Block<InputProps> {
