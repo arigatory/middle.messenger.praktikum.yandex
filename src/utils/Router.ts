@@ -1,4 +1,9 @@
+/* eslint-disable max-classes-per-file */
 import Block from './Block';
+
+export interface BlockConstructable<P extends Record<string, any> = any> {
+  new (props: P): Block<P>;
+}
 
 function isEqual(lhs: string, rhs: string): boolean {
   return lhs === rhs;
@@ -23,10 +28,9 @@ class Route {
 
   constructor(
     private pathname: string,
-    private readonly blockClass: typeof Block,
-    private readonly query: string,
-  ) {
-  }
+    private readonly blockClass: BlockConstructable,
+    private readonly query: string
+  ) {}
 
   leave() {
     this.block = null;
@@ -58,6 +62,7 @@ class Router {
 
   constructor(private readonly rootQuery: string) {
     if (Router.__instance) {
+      // eslint-disable-next-line no-constructor-return
       return Router.__instance;
     }
 
@@ -70,7 +75,7 @@ class Router {
     this.defaultNotFoundPage = notFoundPage;
   }
 
-  public use(pathname: string, block: typeof Block) {
+  public use(pathname: string, block: BlockConstructable) {
     const route = new Route(pathname, block, this.rootQuery);
     this.routes.push(route);
 
