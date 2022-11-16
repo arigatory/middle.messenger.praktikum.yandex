@@ -1,0 +1,111 @@
+@import '../../css/common.scss';
+@import '../../css/_mixin.scss';
+
+.content {
+  @include content;
+}
+
+.back-link {
+  text-decoration: none;
+  color: white !important;
+  background: #3369f3;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  padding: 5px;
+  text-align: center;
+  font-size: 16px  !important;
+  line-height: 20px  !important;
+}
+
+.profile-navigation {
+  background-color: #fbfbfb;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  width: 40px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  width: 100%;
+
+  &__picture {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+  }
+
+  &__name {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: #1e1e1e;
+    margin-bottom: 60px;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    color: #999999;
+  }
+
+  &__row {
+    display: flex;
+    min-width: 510px;
+    min-height: 33px;
+    justify-content: space-between;
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px;
+  }
+
+  &__row:last-of-type {
+    border: none;
+  }
+
+  &__key {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: #1e1e1e;
+  }
+
+  &__value {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: #999999;
+  }
+
+  &__link {
+    @include link;
+    font-size: 13px;
+    line-height: 13px;
+
+    &_danger {
+      color: #ff0000 !important;
+    }
+  }
+}
+
+.center {
+  padding-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rows {
+  margin-bottom: 60px;
+}

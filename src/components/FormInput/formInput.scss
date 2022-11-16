@@ -1,0 +1,25 @@
+@import '../../css/common.scss';
+@import '../../css/mixin.scss';
+
+.input-row {
+  display: flex;
+  flex-direction: column;
+  &:focus {
+    outline: none;
+  }
+
+  .label {
+    @include label;
+  }
+
+  .input {
+    @include input;
+
+    &::placeholder {
+      text-align: center;
+      color: #aaaaaa;
+    }
+  }
+
+
+}

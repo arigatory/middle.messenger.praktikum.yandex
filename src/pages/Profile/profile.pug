@@ -1,0 +1,32 @@
+.content
+  .profile-navigation
+    |!{backLink}
+  .profile
+    img(src=avatar alt="avatar").profile__picture
+    p.profile__name !{login}
+    .rows
+      .profile__row
+        .profile__key Почта
+        .profile__value !{email}
+      .profile__row
+        .profile__key Логин
+        .profile__value !{login}
+      .profile__row
+        .profile__key Имя
+        .profile__value !{first_name}
+      .profile__row
+        .profile__key Фамилия
+        .profile__value !{second_name}
+      .profile__row
+        .profile__key Имя в чате
+        .profile__value !{first_name} !{second_name}
+      .profile__row
+        .profile__key Телефон
+        .profile__value !{phone}
+    .rows
+      .profile__row
+        |!{editAccountLink}
+      .profile__row
+        |!{passwordChangeLink}
+      .profile__row
+        |!{exitLink}

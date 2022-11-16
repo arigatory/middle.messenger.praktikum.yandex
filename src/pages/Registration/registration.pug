@@ -1,0 +1,16 @@
+.modal
+  .modal__overlay
+  .modal__content
+    .registration-card
+      h1.registration-card__title Регистрация
+      form(action="post" onsubmit="return false;").registration-form
+        |!{mail}
+        |!{login}
+        |!{firstName}
+        |!{lastName}
+        |!{phone}
+        |!{password}
+        |!{passwordRepeat}
+        .gap
+        |!{button}
+        |!{link}

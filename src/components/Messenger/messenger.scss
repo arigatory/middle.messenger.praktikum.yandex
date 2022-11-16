@@ -1,0 +1,47 @@
+.chat-detail {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: stretch;
+  justify-items: stretch;
+  position: relative;
+}
+
+.chat-header-region {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  right: 0;
+  left: 0;
+  background: white;
+}
+
+.messages-list-region {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-top: 100px;
+  flex-grow: 2;
+}
+
+.message-input-region {
+  display: flex;
+  align-items: center;
+  position:fixed;
+  bottom: 0px;
+  right: 0;
+  left: 0;
+  background: white;
+  margin-left: 30%; 
+}
+
+.no-chat {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #999;
+  font-size: 30px;
+}

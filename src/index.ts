@@ -1,36 +1,43 @@
-import { Chat, ChatProps } from './models/Chat';
-import { MainView } from './views/MainView/MainView';
-import { Main } from './models/Main';
-import { Collection } from './models/Collection';
+import { ProfilePage } from './pages/Profile';
+import { LoginPage } from './pages/Login';
+import { RegistrationPage } from './pages/Registration';
+import Router from './utils/Router';
+import store from './utils/Store';
+import AuthController from './controllers/AuthController';
+import { ChatsList } from './components/ChatsList';
+import { MessengerPage } from './pages/Messenger';
+import { NotFoundPage } from './pages/NotFound';
+import { PasswordChangePage } from './pages/PasswordChange';
+import { SuccessPage } from './pages/Success';
+import { EditAccountPage } from './pages/EditAccount';
 
-import { FakeDb } from './utils/fake-db';
-import { ProfileView } from './views/ProfileView/ProfileView';
-import { Profile } from './models/Profile';
-import { Login } from './models/Login';
-import { LoginView } from './views/LoginView/LoginView';
-import { RegistrationView } from './views/RegistrationView/RegistrationView';
-import { Registration } from './models/Registration';
-
-const data = FakeDb.getChats();
-const selectedChat: Chat = data[0];
-
-const chats = new Collection('', (json: ChatProps) => Chat.buildChat(json));
-
-chats.load(data);
-const root = document.getElementById('root');
-const path = document.location.pathname;
-
-if (root) {
-  if (path === '/profile') {
-    new ProfileView(
-      root,
-      Profile.buildProfile({ picture: 'https://i.pravatar.cc/150?img=12' }),
-    ).render();
-  } else if (path === '/login') {
-    new LoginView(root, Login.buildLogin()).render();
-  } else if (path === '/registration') {
-    new RegistrationView(root, Registration.buildRegistration()).render();
-  } else {
-    new MainView(root, Main.buildMain({ chats, selectedChat })).render();
+declare global {
+  interface Window {
+    store: any;
   }
 }
+
+window.store = store;
+
+window.addEventListener('DOMContentLoaded', async () => {
+  Router.use('/settings', ProfilePage)
+    .use('/', LoginPage)
+    .use('/sign-up', RegistrationPage)
+    .use('/chatslist', ChatsList)
+    .use('/messenger', MessengerPage)
+    .use('/passwordChange', PasswordChangePage)
+    .use('/editAccount', EditAccountPage)
+    .use('/success', SuccessPage)
+    .use('/notFound', NotFoundPage);
+  Router.setNotFoundPage(new NotFoundPage({}));
+  try {
+    await AuthController.fetchUser();
+    Router.start();
+  } catch (e: any) {
+    if (e.reason === 'Cookie is not valid') {
+      Router.go('/');
+    } else {
+      Router.go('/notFound');
+    }
+  }
+});
