@@ -1,4 +1,4 @@
-import { ChatsList as ChatsList } from '../../components/ChatsList';
+import { ChatsList } from '../../components/ChatsList';
 import { Messenger } from '../../components/Messenger';
 import { Navigation } from '../../components/Navigation';
 import ChatsController from '../../controllers/ChatsController';

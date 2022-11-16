@@ -45,7 +45,7 @@ export class EditAccountPageBase extends Block {
       name: 'second_name',
       type: 'text',
       value: this.props.second_name,
-      
+
     });
 
     this.children.displayNameInput = new Input({
@@ -71,6 +71,7 @@ export class EditAccountPageBase extends Block {
       },
     });
   }
+
   render() {
     return this.compile(template, this.props);
   }

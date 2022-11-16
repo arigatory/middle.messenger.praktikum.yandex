@@ -42,7 +42,7 @@ export const loginErrors = (login: string): string[] => {
   }
   if (!allowedChars(login)) {
     result.push(
-      'Логин должен быть без спецсимволов (допустимы дефис и нижнее подчёркивание)'
+      'Логин должен быть без спецсимволов (допустимы дефис и нижнее подчёркивание)',
     );
   }
   return result;
@@ -73,7 +73,6 @@ export const nameErrors = (name: string): string[] => {
   if (!allowedNameChars(name)) {
     result.push('Разрешено исользовать только латиницу или кириллицу');
   }
-
 
   return result;
 };

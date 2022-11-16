@@ -10,10 +10,6 @@ export interface MessageInputProps {
 }
 
 export class MessageInput extends Block<MessageInputProps> {
-  constructor(props: MessageInputProps) {
-    super(props);
-  }
-
   public getName() {
     return (this.element as HTMLInputElement).name;
   }

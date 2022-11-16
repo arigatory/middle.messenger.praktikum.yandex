@@ -6,7 +6,6 @@ import { Chat } from '../Chat';
 import template from './chatsList.pug';
 import './chatsList.scss';
 
-
 interface ChatsListProps {
   chats: ChatInfo[];
   isLoaded: boolean;
@@ -23,23 +22,21 @@ class ChatsListBase extends Block<ChatsListProps> {
 
   protected componentDidUpdate(
     _oldProps: ChatsListProps,
-    newProps: ChatsListProps
+    newProps: ChatsListProps,
   ): boolean {
     this.children.chats = this.createChats(newProps);
     return true;
   }
 
   private createChats(props: ChatsListProps) {
-    return props.chats.map((data) => {
-      return new Chat({
-        ...data,
-        events: {
-          click: () => {
-            ChatsController.selectChat(data.id);
-          },
+    return props.chats.map((data) => new Chat({
+      ...data,
+      events: {
+        click: () => {
+          ChatsController.selectChat(data.id);
         },
-      });
-    });
+      },
+    }));
   }
 
   protected render(): DocumentFragment {

@@ -12,17 +12,17 @@ export class ProfilePageBase extends Block {
 
     this.children.backLink = new Link({
       label: '<',
-      to: '/messenger'
+      to: '/messenger',
     });
 
     this.children.editAccountLink = new Link({
       label: 'Изменить пароль',
-      to: '/passwordChange'
+      to: '/passwordChange',
     });
 
     this.children.passwordChangeLink = new Link({
       label: 'Изменить данные',
-      to: '/editAccount'
+      to: '/editAccount',
     });
 
     this.children.backLink.element?.classList.add('back-link');
@@ -32,17 +32,17 @@ export class ProfilePageBase extends Block {
       events: {
         click: () => {
           AuthController.logout();
-        }
+        },
       },
-      isDanger: true
+      isDanger: true,
     });
-
   }
+
   render() {
     return this.compile(template, this.props);
   }
 }
 
-const withUser = withStore((state) => ({...state.user}));
+const withUser = withStore((state) => ({ ...state.user }));
 
 export const ProfilePage = withUser(ProfilePageBase);

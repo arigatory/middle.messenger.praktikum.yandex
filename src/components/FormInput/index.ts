@@ -14,10 +14,6 @@ interface FormInputProps {
 }
 
 export class FormInput extends Block<FormInputProps> {
-  constructor(props: FormInputProps) {
-    super(props);
-  }
-
   init() {
     this.children.input = new Input({
       name: this.props.name,
@@ -28,8 +24,9 @@ export class FormInput extends Block<FormInputProps> {
           (this.children.validationErrors as Block).setProps({
             errors: this.props.validate(this.getValue()),
           });
-          if (this.props.updateButton) 
+          if (this.props.updateButton) {
             this.props.updateButton();
+          }
         },
       },
     });

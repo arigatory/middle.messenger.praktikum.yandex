@@ -24,7 +24,8 @@ class Route {
   constructor(
     private pathname: string,
     private readonly blockClass: typeof Block,
-    private readonly query: string) {
+    private readonly query: string,
+  ) {
   }
 
   leave() {
@@ -40,16 +41,19 @@ class Route {
       this.block = new this.blockClass({});
 
       render(this.query, this.block);
-      return;
     }
   }
 }
 
 class Router {
   private static __instance: Router;
+
   private routes: Route[] = [];
+
   private currentRoute: Route | null = null;
+
   private history = window.history;
+
   private defaultNotFoundPage?: Block | null;
 
   constructor(private readonly rootQuery: string) {
@@ -78,7 +82,7 @@ class Router {
       const target = event.currentTarget as Window;
 
       this._onRoute(target.location.pathname);
-    }
+    };
 
     this._onRoute(window.location.pathname);
   }
@@ -116,7 +120,7 @@ class Router {
   }
 
   private getRoute(pathname: string) {
-    return this.routes.find(route => route.match(pathname));
+    return this.routes.find((route) => route.match(pathname));
   }
 }
 

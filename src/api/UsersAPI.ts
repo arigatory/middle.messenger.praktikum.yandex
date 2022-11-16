@@ -1,4 +1,4 @@
-import BaseAPI from "./BaseAPI";
+import BaseAPI from './BaseAPI';
 
 export interface User {
   id: number;
@@ -12,21 +12,21 @@ export interface User {
 }
 
 export interface ProfileData {
-  first_name: 'string';
-  second_name: 'string';
-  display_name: 'string';
-  login: 'string';
-  email: 'string';
-  phone: 'string';
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  email: string;
+  phone: string;
 }
 
 export interface SearchUserData {
-  login: 'string';
+  login: string;
 }
 
 export interface ChangePasswordsData {
-  oldPassword: 'string';
-  newPassword: 'string';
+  oldPassword: string;
+  newPassword: string;
 }
 
 export class UsersAPI extends BaseAPI {
@@ -35,7 +35,7 @@ export class UsersAPI extends BaseAPI {
   }
 
   readById(userId: number): Promise<User> {
-    return this.http.get('/' + userId);
+    return this.http.get(`/${userId}`);
   }
 
   changePassword(data: ChangePasswordsData) {
@@ -46,10 +46,12 @@ export class UsersAPI extends BaseAPI {
     return this.http.put('/profile', data);
   }
 
-
   read = undefined;
+
   create = undefined;
+
   update = undefined;
+
   delete = undefined;
 }
 

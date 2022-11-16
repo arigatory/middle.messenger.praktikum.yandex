@@ -13,13 +13,9 @@ interface MessengerProps {
   selectedChat: number | undefined;
   messages: MessageInfo[];
   userId: number;
-} 
+}
 
 export class MessengerBase extends Block<MessengerProps> {
-  constructor(props: MessengerProps) {
-    super(props);
-  }
-
   protected init() {
     this.children.messages = this.createMessages(this.props);
 
@@ -47,16 +43,16 @@ export class MessengerBase extends Block<MessengerProps> {
 
   protected componentDidUpdate(
     _oldProps: MessengerProps,
-    newProps: MessengerProps
+    newProps: MessengerProps,
   ): boolean {
     this.children.messages = this.createMessages(newProps);
     return true;
   }
 
   private createMessages(props: MessengerProps) {
-    return props.messages.map((data) => {
-      return new Message({ ...data, isMine: props.userId === data.user_id });
-    });
+    return props.messages.map(
+      (data) => new Message({ ...data, isMine: props.userId === data.user_id }),
+    );
   }
 
   protected render(): DocumentFragment {
@@ -66,12 +62,13 @@ export class MessengerBase extends Block<MessengerProps> {
 
 const withSelectedChatMessages = withStore((state) => {
   const selectedChatId = state.selectedChat;
-  if (!selectedChatId) return {
-    messages: [],
-    selectedChat: undefined,
-    userId: state.user.id,
-  };
-
+  if (!selectedChatId) {
+    return {
+      messages: [],
+      selectedChat: undefined,
+      userId: state.user.id,
+    };
+  }
 
   return {
     messages: (state.messages || {})[selectedChatId] || [],

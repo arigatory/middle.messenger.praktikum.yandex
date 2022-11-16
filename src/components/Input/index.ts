@@ -14,10 +14,6 @@ export interface InputProps {
 }
 
 export class Input extends Block<InputProps> {
-  constructor(props: InputProps) {
-    super(props);
-  }
-
   public setValue(value: string) {
     (this.element as HTMLInputElement).value = value;
   }

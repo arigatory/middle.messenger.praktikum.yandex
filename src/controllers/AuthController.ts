@@ -35,9 +35,9 @@ export class AuthController {
 
   async fetchUser() {
     const user = await this.api.read();
-    if (!user.avatar)
-      user.avatar =
-        'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250';
+    if (!user.avatar) {
+      user.avatar = 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250';
+    }
     store.set('user', user);
   }
 

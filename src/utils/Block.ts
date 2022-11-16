@@ -1,5 +1,5 @@
-import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
+import { EventBus } from './EventBus';
 
 class Block<P extends Record<string, any> = any> {
   static EVENTS = {
@@ -10,9 +10,13 @@ class Block<P extends Record<string, any> = any> {
   } as const;
 
   public id = nanoid(6);
+
   protected props: P;
+
   public children: Record<string, Block | Block[]>;
+
   private eventBus: () => EventBus;
+
   private _element: HTMLElement | null = null;
 
   /** JSDoc
@@ -45,9 +49,9 @@ class Block<P extends Record<string, any> = any> {
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
       if (
-        Array.isArray(value) &&
-        value.length > 0 &&
-        value.every((value) => value instanceof Block)
+        Array.isArray(value)
+        && value.length > 0
+        && value.every((value) => value instanceof Block)
       ) {
         children[key as string] = value;
       } else if (value instanceof Block) {
@@ -150,7 +154,7 @@ class Block<P extends Record<string, any> = any> {
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
         contextAndStubs[name] = component.map(
-          (child) => `<div data-id="${child.id}"></div>`
+          (child) => `<div data-id="${child.id}"></div>`,
         );
       } else {
         contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
@@ -213,7 +217,7 @@ class Block<P extends Record<string, any> = any> {
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
-      
+
       deleteProperty() {
         throw new Error('Нет доступа');
       },

@@ -11,17 +11,12 @@ interface ButtonProps {
 }
 
 export class Button extends Block<ButtonProps> {
-  constructor(props: ButtonProps) {
-    super(props);
-  }
-
   protected init(): void {
     if (this.props.disabled) {
       this.disable();
     } else {
       this.enable();
     }
-
   }
 
   private disable() {
@@ -29,7 +24,7 @@ export class Button extends Block<ButtonProps> {
       (this.element as HTMLButtonElement).classList.add('disabled');
       (this.element as HTMLButtonElement).removeEventListener(
         'click',
-        this.props.events.click
+        this.props.events.click,
       );
     }
   }
@@ -39,7 +34,7 @@ export class Button extends Block<ButtonProps> {
       (this.element as HTMLButtonElement).classList.remove('disabled');
       (this.element as HTMLButtonElement).addEventListener(
         'click',
-        this.props.events.click
+        this.props.events.click,
       );
     }
   }

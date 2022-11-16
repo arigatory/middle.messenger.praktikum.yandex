@@ -15,8 +15,6 @@ export interface SignUpData {
   phone: string;
 }
 
-
-
 export class AuthAPI extends BaseAPI {
   constructor() {
     super('/auth');
@@ -39,7 +37,9 @@ export class AuthAPI extends BaseAPI {
   }
 
   create = undefined;
+
   update = undefined;
+
   delete = undefined;
 }
 

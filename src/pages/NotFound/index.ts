@@ -8,10 +8,11 @@ export class NotFoundPage extends Block {
     this.children.messengerLink = new Link(
       {
         to: '/messenger',
-        label: 'Назад к чатам'
-      }
-    )
+        label: 'Назад к чатам',
+      },
+    );
   }
+
   protected render(): DocumentFragment {
     return this.compile(template, this.props);
   }

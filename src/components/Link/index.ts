@@ -19,8 +19,8 @@ class BaseLink extends Block<LinkProps> {
       events:
         props.events === undefined
           ? {
-              click: () => this.navigate(),
-            }
+            click: () => this.navigate(),
+          }
           : props.events,
     });
   }

@@ -16,14 +16,14 @@ export class LoginPage extends Block {
       type: 'text',
       label: 'Логин',
       validate: loginErrors,
-      updateButton: () => this.updateButton()
+      updateButton: () => this.updateButton(),
     });
 
     this.children.password = new FormInput({
       name: 'password',
       type: 'password',
       label: 'Пароль',
-      validate: () => []
+      validate: () => [],
     });
 
     this.children.button = new Button({
@@ -38,10 +38,9 @@ export class LoginPage extends Block {
       to: '/sign-up',
       label: 'Регистрация',
     });
-
   }
 
-  updateButton(){
+  updateButton() {
     const res = Object.values(this.children)
       .filter((child) => child instanceof FormInput)
       .map((child) => (child as FormInput).countErrors())
@@ -54,8 +53,7 @@ export class LoginPage extends Block {
   }
 
   onSubmit() {
-    if ((this.children.button as Button).isDisabled())
-      return
+    if ((this.children.button as Button).isDisabled()) { return; }
     const values = Object.values(this.children)
       .filter((child) => child instanceof FormInput)
       .map((child) => [

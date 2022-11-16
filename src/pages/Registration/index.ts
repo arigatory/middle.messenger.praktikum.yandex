@@ -22,7 +22,7 @@ export class RegistrationPage extends Block {
       type: 'email',
       label: 'Почта',
       validate: emailErrors,
-      updateButton: () => this.updateButton()
+      updateButton: () => this.updateButton(),
     });
 
     this.children.login = new FormInput({
@@ -30,7 +30,7 @@ export class RegistrationPage extends Block {
       type: 'text',
       label: 'Логин',
       validate: loginErrors,
-      updateButton: () => this.updateButton()
+      updateButton: () => this.updateButton(),
     });
 
     this.children.firstName = new FormInput({
@@ -38,7 +38,7 @@ export class RegistrationPage extends Block {
       type: 'text',
       label: 'Имя',
       validate: nameErrors,
-      updateButton: () => this.updateButton()
+      updateButton: () => this.updateButton(),
     });
 
     this.children.lastName = new FormInput({
@@ -46,7 +46,7 @@ export class RegistrationPage extends Block {
       type: 'text',
       label: 'Фамилия',
       validate: nameErrors,
-      updateButton: () => this.updateButton()
+      updateButton: () => this.updateButton(),
     });
 
     this.children.phone = new FormInput({
@@ -54,7 +54,7 @@ export class RegistrationPage extends Block {
       type: 'text',
       label: 'Телефон',
       validate: phoneErrors,
-      updateButton: () => this.updateButton()
+      updateButton: () => this.updateButton(),
     });
 
     this.children.password = new FormInput({
@@ -62,7 +62,7 @@ export class RegistrationPage extends Block {
       type: 'password',
       label: 'Пароль',
       validate: passwordErrors,
-      updateButton: () => this.updateButton()
+      updateButton: () => this.updateButton(),
     });
 
     this.children.passwordRepeat = new FormInput({
@@ -76,7 +76,7 @@ export class RegistrationPage extends Block {
         }
         return newErrors;
       },
-      updateButton: () => this.updateButton()
+      updateButton: () => this.updateButton(),
     });
 
     this.children.button = new Button({
@@ -84,7 +84,7 @@ export class RegistrationPage extends Block {
       events: {
         click: () => this.onSubmit(),
       },
-      disabled: true
+      disabled: true,
     });
 
     this.children.link = new Link({
@@ -104,6 +104,7 @@ export class RegistrationPage extends Block {
       });
     }
   }
+
   onSubmit() {
     const values = Object.values(this.children)
       .filter((child) => child instanceof FormInput)

@@ -4,6 +4,7 @@ import { withStore } from '../../utils/Store';
 import template from './chat.pug';
 import './chat.scss';
 import pic from '../../img/empty-avatar.png';
+import { User } from '../../api/UsersAPI';
 
 interface ChatProps {
   id: number;
@@ -13,15 +14,7 @@ interface ChatProps {
   last_message: {
     content: string;
     time: string;
-    user: {
-      avatar: string;
-      display_name: string;
-      email: string;
-      first_name: string;
-      login: string;
-      phone: string;
-      second_name: string;
-    };
+    user: User;
   };
   pic: string;
   events: {
@@ -30,10 +23,6 @@ interface ChatProps {
 }
 
 class ChatBase extends Block<ChatProps> {
-  constructor(props: ChatProps) {
-    super(props);
-  }
-
   protected render(): DocumentFragment {
     return this.compile(template, {
       ...this.props,

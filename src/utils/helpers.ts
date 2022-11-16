@@ -3,7 +3,7 @@ export type Indexed<T = any> = {
 };
 
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
-  for (let p in rhs) {
+  for (const p in rhs) {
     if (!rhs.hasOwnProperty(p)) {
       continue;
     }
@@ -23,73 +23,67 @@ export function merge(lhs: Indexed, rhs: Indexed): Indexed {
 }
 
 export function isEqual(a: object, b: object): boolean {
-
-	/**
+  /**
 	 * More accurately check the type of a JavaScript object
 	 * @param  {Object} obj The object
 	 * @return {String}     The object type
 	 */
-	function getType (obj: object) {
-		return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
-	}
+  function getType(obj: object) {
+    return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+  }
 
-	function areArraysEqual () {
+  function areArraysEqual() {
+    // Check length
+    if ((<any>a).length !== (<any>b).length) return false;
 
-		// Check length
-		if ((<any>a).length  !== (<any>b).length) return false;
+    // Check each item in the array
+    for (let i = 0; i < (<any>a).length; i++) {
+      if (!isEqual((<any>a)[i], (<any>b)[i])) return false;
+    }
 
-		// Check each item in the array
-		for (let i = 0; i < (<any>a).length; i++) {
-			if (!isEqual((<any>a)[i], (<any>b)[i])) return false;
-		}
+    // If no errors, return true
+    return true;
+  }
 
-		// If no errors, return true
-		return true;
+  function areObjectsEqual() {
+    if (Object.keys(a).length !== Object.keys(b).length) return false;
 
-	}
+    // Check each item in the object
+    for (const key in a) {
+      if (Object.prototype.hasOwnProperty.call(a, key)) {
+        if (!isEqual(a[key as keyof Object], b[key as keyof Object])) return false;
+      }
+    }
 
-	function areObjectsEqual () {
+    // If no errors, return true
+    return true;
+  }
 
-		if (Object.keys(a).length !== Object.keys(b).length) return false;
+  function areFunctionsEqual() {
+    return a.toString() === b.toString();
+  }
 
-		// Check each item in the object
-		for (let key in a) {
-			if (Object.prototype.hasOwnProperty.call(a, key)) {
-				if (!isEqual(a[key as keyof Object], b[key as keyof Object])) return false;
-			}
-		}
+  function arePrimativesEqual() {
+    return a === b;
+  }
 
-		// If no errors, return true
-		return true;
+  // Get the object type
+  const type = getType(a);
 
-	}
+  // If the two items are not the same type, return false
+  if (type !== getType(b)) return false;
 
-	function areFunctionsEqual () {
-		return a.toString() === b.toString();
-	}
-
-	function arePrimativesEqual () {
-		return a === b;
-	}
-
-	// Get the object type
-	let type = getType(a);
-
-	// If the two items are not the same type, return false
-	if (type !== getType(b)) return false;
-
-	// Compare based on type
-	if (type === 'array') return areArraysEqual();
-	if (type === 'object') return areObjectsEqual();
-	if (type === 'function') return areFunctionsEqual();
-	return arePrimativesEqual();
-
+  // Compare based on type
+  if (type === 'array') return areArraysEqual();
+  if (type === 'object') return areObjectsEqual();
+  if (type === 'function') return areFunctionsEqual();
+  return arePrimativesEqual();
 }
 
 export function set(
   object: Indexed | unknown,
   path: string,
-  value: unknown
+  value: unknown,
 ): Indexed | unknown {
   if (typeof object !== 'object' || object === null) {
     return object;
@@ -103,7 +97,7 @@ export function set(
     (acc, key) => ({
       [key]: acc,
     }),
-    value as any
+    value as any,
   );
 
   return merge(object as Indexed, result);

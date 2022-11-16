@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './success.pug';
 import './success.scss';
-import {Link} from '../../components/Link';
+import { Link } from '../../components/Link';
 
 export class SuccessPage extends Block {
   init() {

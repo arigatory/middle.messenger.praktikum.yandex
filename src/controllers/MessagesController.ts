@@ -29,7 +29,7 @@ class MessagesController {
     const userId = store.getState().user.id;
 
     const wsTransport = new WSTransport(
-      `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`
+      `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`,
     );
 
     this.sockets.set(chatId, wsTransport);
@@ -82,8 +82,7 @@ class MessagesController {
 
   private subscribe(transport: WSTransport, chatId: number) {
     transport.on(WSTransportEvents.Message, (message) =>
-      this.onMessage(chatId, message)
-    );
+      this.onMessage(chatId, message));
     transport.on(WSTransportEvents.Close, () => this.onClose(chatId));
   }
 }
