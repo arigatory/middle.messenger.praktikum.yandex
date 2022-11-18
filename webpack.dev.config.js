@@ -1,13 +1,32 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const PugPlugin = require('pug-plugin');
 
 module.exports = {
   entry: './src/index.ts',
   output: {
-    filename: 'bundle.[contenthash].js',
-    path: path.resolve(__dirname, 'dist'),
-    clean: true
+    filename: '[name].js',
+    path: path.resolve(__dirname, './dist'),
+    clean: true,
+  },
+  mode: 'development',
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+  devServer: {
+    port: 3000,
+    static: {
+      directory: path.resolve(__dirname, './dist'),
+    },
+    historyApiFallback: {
+      index: 'index.html',
+    },
+    devMiddleware: {
+      index: 'index.html',
+      writeToDisk: true,
+    },
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -17,11 +36,6 @@ module.exports = {
       {
         test: /\.(png|jpg)$/,
         type: 'asset',
-        parser: {
-          dataUrlCondition: {
-            maxSize: 3 * 1024,
-          },
-        },
       },
       {
         test: /\.tsx?$/,
@@ -30,7 +44,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.js$/,
@@ -45,14 +59,15 @@ module.exports = {
       },
       {
         test: /\.pug$/,
-        use: ['pug-loader'],
+        loader: PugPlugin.loader,
       },
     ],
   },
   plugins: [
-    new TerserPlugin(),
-    new MiniCssExtractPlugin({
-      filename: 'styles.[contenthash].css',
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      filename: 'index.html',
+      minify: false,
     }),
   ],
 };
