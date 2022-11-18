@@ -10,7 +10,7 @@
     "validate:parcel": "parcel build src/index.html --dist-dir dist",
     "validate": "concurrently npm:validate:* ",
     "build": "webpack --config webpack.production.config.js",
-    "dev": "webpack serve --config webpack.dev.config.js",
+    "dev": "webpack serve --config webpack.dev.config.js --hot",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'"
   },
   "repository": {
