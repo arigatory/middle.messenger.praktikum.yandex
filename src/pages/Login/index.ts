@@ -53,7 +53,9 @@ export class LoginPage extends Block {
   }
 
   onSubmit() {
-    if ((this.children.button as Button).isDisabled()) { return; }
+    if ((this.children.button as Button).isDisabled()) {
+      return;
+    }
     const values = Object.values(this.children)
       .filter((child) => child instanceof FormInput)
       .map((child) => [
