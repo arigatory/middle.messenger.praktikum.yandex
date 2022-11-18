@@ -88,7 +88,7 @@ export class RegistrationPage extends Block {
     });
 
     this.children.link = new Link({
-      to: '/',
+      to: '/login',
       label: 'Войти?',
     });
   }

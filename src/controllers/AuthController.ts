@@ -15,8 +15,13 @@ export class AuthController {
       await this.fetchUser();
 
       router.go('/messenger');
-    } catch (err) {
-      console.log('redirecting to messenger failed', err);
+    } catch (err: any) {
+      if (err.reason === 'User already in system')
+        router.go('/messenger');
+      else {
+        store.set('error', { text: err.reason });
+        console.log('redirecting to messenger failed', err);
+      }
     }
   }
 

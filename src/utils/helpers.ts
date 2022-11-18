@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 export type Indexed<T = any> = {
   [key in string]: T;
 };
