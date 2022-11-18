@@ -13,6 +13,11 @@
     "dev": "webpack serve --config webpack.dev.config.js --hot",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint:all"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arigatory/middle.messenger.praktikum.yandex.git"
@@ -57,6 +62,7 @@
     "eslint-plugin-import": "^2.26.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.2",
     "jsdom": "^20.0.2",
     "mini-css-extract-plugin": "^2.7.0",
     "mocha": "^10.1.0",

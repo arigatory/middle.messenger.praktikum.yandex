@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { set } from './helpers';
 
-describe.skip('set function', () => {
+describe('set function', () => {
   const keypath = 'test';
   const value = 'value';
   let obj: Record<string, unknown>;
